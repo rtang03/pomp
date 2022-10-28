@@ -39,13 +39,15 @@ const Fail: FC<Props> = ({ mission, showModal, setShowModal }) => {
     setTxHash,
     signTypedDataAsync,
     writeAsync
-  } = useCommon('failWithSig', {
-    profileId: 0,
-    challenge: '',
-    reason: 0,
-    signature: SIGNATURE_PLACEHOLDER,
-    deadline: 0
-  });
+  } = useCommon('failWithSig', [
+    {
+      profileId: 0,
+      challenge: '',
+      reason: 0,
+      signature: SIGNATURE_PLACEHOLDER,
+      deadline: 0
+    }
+  ]);
 
   return (
     <Formik
@@ -92,7 +94,7 @@ const Fail: FC<Props> = ({ mission, showModal, setShowModal }) => {
                 challenge: typedData.value.challenge,
                 deadline: typedData.value.deadline,
                 signature
-              }
+              } as any
             });
           });
           setTxHash(hash);

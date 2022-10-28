@@ -1,6 +1,5 @@
-import nftABI from 'smart-contract/abi/contracts/MissionNFT.sol/MissionNFT.json';
-import pompABI from 'smart-contract/abi/contracts/PompHub.sol/PompHub.json';
-
+import { abi as nftABI } from './abi/MissionNFT';
+import { abi as pompABI } from './abi/PompHub';
 import {
   MISS_MODULE_ADDRESS_GOERLI,
   MISS_MODULE_ADDRESS_LOCAL,
@@ -21,8 +20,8 @@ const IS_LOCALHOST =
 export const POMP_ADDRESS = IS_LOCALHOST ? POMP_ADDRESS_LOCAL : defaultNetworkForPomp;
 
 export const pompContract = {
-  addressOrName: POMP_ADDRESS,
-  contractInterface: pompABI
+  address: POMP_ADDRESS,
+  abi: pompABI
 };
 
 const defaultNetworkForNft =
@@ -31,8 +30,8 @@ const defaultNetworkForNft =
     : MISSIONNFT_ADDRESS_GOERLI;
 
 export const nftContract = {
-  addressOrName: IS_LOCALHOST ? MISSIONNFT_ADDRESS_LOCAL : defaultNetworkForNft,
-  contractInterface: nftABI
+  address: IS_LOCALHOST ? MISSIONNFT_ADDRESS_LOCAL : defaultNetworkForNft,
+  abi: nftABI
 };
 
 const defaultNetworkForMissionModule =

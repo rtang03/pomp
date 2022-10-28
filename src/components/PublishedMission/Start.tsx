@@ -7,6 +7,7 @@ import { WarningMessage } from '@components/UI/WarningMessage';
 import { useCommon } from '@hooks/useCommon';
 import { useDebounce } from '@hooks/useDebounce';
 import {
+  TAddress,
   useHasRoleQuery,
   useMissionIdBySlug,
   useProfileByAddress,
@@ -59,19 +60,21 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
     signTypedDataAsync,
     writeAsync,
     resetAll
-  } = useCommon('startWithSig', {
-    profileId: 0,
-    slug: '',
-    contentURI: '',
-    minutesToExpire: 0,
-    creator: ZERO_ADDRESS,
-    verifier: ZERO_ADDRESS,
-    signature: SIGNATURE_PLACEHOLDER,
-    deadline: 0
-  });
+  } = useCommon('startWithSig', [
+    {
+      profileId: 0,
+      slug: '',
+      contentURI: '',
+      minutesToExpire: 0,
+      creator: ZERO_ADDRESS,
+      verifier: ZERO_ADDRESS,
+      signature: SIGNATURE_PLACEHOLDER,
+      deadline: 0
+    }
+  ]);
   const [nameRef, setNameRef] = useState<string>();
   const [parsedLog, setParsedLog] = useState<ParsedLog>();
-  const verifierRef = useRef<string>();
+  const verifierRef = useRef<TAddress>();
 
   const { profileId, isError: isErrorProfileByAddress } = useProfileByAddress(address, !address);
   const profileNotFound = profileId === null;
@@ -93,9 +96,9 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
     isRefetching: isRefetchingHasRole,
     isError: isErrorHasRole
   } = useHasRoleQuery(
-    roleHash,
+    roleHash as TAddress,
     verifierRef.current?.length === ADDRESS_LENGTH ? verifierRef.current : ZERO_ADDRESS,
-    !verifierRef.current || verifierRef.current?.length !== ADDRESS_LENGTH
+    !verifierRef.current || verifierRef.current?.length !== ADDRESS_LENGTH || !roleHash
   );
 
   return (
@@ -235,7 +238,7 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                           verifier: startTypedData.value.verifier,
                           signature,
                           deadline: startTypedData.value.deadline
-                        }
+                        } as any
                       });
                     }
                   );
@@ -321,7 +324,7 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                       name="verifier"
                       onKeyUp={() => {
                         if (!isRefetchingHasRole) {
-                          verifierRef.current = values.verifier;
+                          verifierRef.current = values.verifier as TAddress;
                           let ignore = refetchHasRole();
                         }
                       }}

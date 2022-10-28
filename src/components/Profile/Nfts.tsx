@@ -1,21 +1,21 @@
-import { usePompRead } from '@hooks/usePompOrNFTContract';
 import { useNftsByEnumerableIndexes } from '@hooks/useProfileMissionQuery';
 import { BigNumber } from 'ethers';
 import fill from 'lodash/fill';
 import isEqual from 'lodash/isEqual';
 import { type FC } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useContractRead } from 'wagmi';
 
+import { nftContract } from '../../networks';
 import { SingleNftByTokenId } from './SingleNft';
 
 const Nfts: FC = () => {
   const { address } = useAccount();
-  const { data: enumerableIndexes, isSuccess } = usePompRead(
-    'Nft',
-    'balanceOf',
-    [address as string],
-    !address
-  );
+  const { data: enumerableIndexes, isSuccess } = useContractRead({
+    ...nftContract,
+    functionName: 'balanceOf',
+    args: [address as any],
+    enabled: !address
+  });
   const isZero = isSuccess ? BigNumber.from(enumerableIndexes).eq('0x00') : null;
   // returns something like, ['0x01', '0x02', '0x03']
   const enumerable = isSuccess
@@ -25,12 +25,12 @@ const Nfts: FC = () => {
           BigNumber.from(val + index).toHexString()
         )
     : null;
-  const { data, isSuccess: nftsIsSuccess } = useNftsByEnumerableIndexes(
+  const { tokenURIs, isSuccess: nftsIsSuccess } = useNftsByEnumerableIndexes(
     address as string,
     enumerable as string[],
     !address || isZero === true || !isSuccess
   );
-  const tokenIds = nftsIsSuccess ? data?.map((item) => BigNumber.from(item)) : null;
+  const tokenIds = nftsIsSuccess ? tokenURIs?.map((item: any) => BigNumber.from(item)) : null;
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import { useAppContext } from '@components/AppContext';
 import { PlayerNavMenu } from '@components/Shared/Navbar/TopNavMenu';
 import Loader from '@components/UI/Loader';
-import { useProfileByAddress } from '@hooks/useProfileMissionQuery';
+import { type TAddress, useProfileByAddress } from '@hooks/useProfileMissionQuery';
 import type { NextPageWithLayout } from '@pages/_app';
 import Custom404 from '@pages/404';
 import dynamic from 'next/dynamic';
@@ -15,7 +15,7 @@ const URL = process.env.NEXT_PUBLIC_URL_DOMAIN || 'http://localhost:3000';
 const PlayerPage: NextPageWithLayout = () => {
   const { user, isAuthenticating } = useAppContext();
   const { address } = useAccount();
-  const { profile } = useProfileByAddress(address as string, !address);
+  const { profile } = useProfileByAddress(address as TAddress, !address);
 
   if (isAuthenticating) return <Loader className="h-[800-px]" />;
   if (!user && !isAuthenticating) return <Custom404 />;

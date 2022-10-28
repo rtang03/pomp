@@ -36,13 +36,15 @@ const MissionListing: FC = () => {
               <div className="flex-col space-y-2">
                 {allPages.map((m, index) => (
                   <div key={`mlist-${index}`}>
-                    <SingleTMissionCard
-                      key={`player-m-${m.tokenId}`}
-                      mission={m}
-                      refetch={refetch}
-                      isVerifier={isVerifier}
-                      isCreatorPage={false}
-                    />
+                    {m && (
+                      <SingleTMissionCard
+                        key={`player-m-${m.tokenId}`}
+                        mission={m}
+                        refetch={refetch}
+                        isVerifier={!!isVerifier}
+                        isCreatorPage={false}
+                      />
+                    )}
                   </div>
                 ))}
               </div>

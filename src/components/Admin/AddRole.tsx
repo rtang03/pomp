@@ -4,7 +4,7 @@ import LoadingDots from '@components/UI/LoadingDots';
 import SaveButton from '@components/UI/SaveButton';
 import { TransactionReceipt } from '@ethersproject/abstract-provider';
 import { usePompPrepareWrite } from '@hooks/usePompOrNFTContract';
-import { useHasRoleQuery, useRoleHashQuery } from '@hooks/useProfileMissionQuery';
+import { type TAddress, useHasRoleQuery, useRoleHashQuery } from '@hooks/useProfileMissionQuery';
 import { elog, log } from '@utils/consoleLog';
 import { onFormSubmitError } from '@utils/onFormSubmitError';
 import { Form, Formik } from 'formik';
@@ -21,7 +21,7 @@ const LABEL = '[AddRole]';
 
 const AddRole: FC<Props> = ({ kind }) => {
   const { dev } = useAppContext();
-  const walletRef = useRef<string>();
+  const walletRef = useRef<TAddress>();
   const [receipt, setReceipt] = useState<TransactionReceipt>();
   const { roleHash, isError: isErrorRoleHash } = useRoleHashQuery(kind, !walletRef);
   const {
@@ -30,9 +30,9 @@ const AddRole: FC<Props> = ({ kind }) => {
     isRefetching: isRefetchingHasRole,
     isError: isErrorHasRole
   } = useHasRoleQuery(
-    roleHash,
+    roleHash as TAddress,
     walletRef.current?.length === ADDRESS_LENGTH ? walletRef.current : ZERO_ADDRESS,
-    !walletRef?.current || walletRef.current?.length !== ADDRESS_LENGTH
+    !walletRef?.current || walletRef.current?.length !== ADDRESS_LENGTH || !roleHash
   );
   const buttonText = hasRole ? 'Revoke' : 'Grant';
 
@@ -62,7 +62,7 @@ const AddRole: FC<Props> = ({ kind }) => {
       onSubmit={async ({ wallet }, { setSubmitting, setStatus }) => {
         setSubmitting(true);
 
-        if (!writeAsync) {
+        if (!writeAsync || !roleHash) {
           onFormSubmitError(setSubmitting, setStatus, 'Fail to prepare TX');
           return;
         }
@@ -71,7 +71,7 @@ const AddRole: FC<Props> = ({ kind }) => {
 
         try {
           const { hash, wait } = await writeAsync({
-            recklesslySetUnpreparedArgs: [roleHash, wallet]
+            recklesslySetUnpreparedArgs: [roleHash, wallet as TAddress]
           });
 
           dev && log(`${LABEL}/txHash`, hash);
@@ -120,7 +120,7 @@ const AddRole: FC<Props> = ({ kind }) => {
               disabled={isSubmitting || status === STATUS.OK || status === STATUS.ERR}
               onKeyUp={() => {
                 if (!isRefetchingHasRole) {
-                  walletRef.current = values.wallet;
+                  walletRef.current = values.wallet as TAddress;
                   let ignore = refetchHasRole();
                 }
               }}

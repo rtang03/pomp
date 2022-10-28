@@ -37,7 +37,7 @@ export const useMissionsByAddress = () => {
     missionCount === 0
       ? []
       : pagesOfmissions
-      ? flatten(pagesOfmissions).filter((m) => m.missionId !== 0)
+      ? flatten(pagesOfmissions).filter((m) => m?.missionId !== 0)
       : [];
 
   return {

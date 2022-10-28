@@ -40,12 +40,14 @@ const Verify: FC<Props> = ({ mission, showModal, setShowModal }) => {
     setTxHash,
     signTypedDataAsync,
     writeAsync
-  } = useCommon('verifyWithSig', {
-    profileId: 0,
-    challenge: '',
-    signature: SIGNATURE_PLACEHOLDER,
-    deadline: 0
-  });
+  } = useCommon('verifyWithSig', [
+    {
+      profileId: 0,
+      challenge: '',
+      signature: SIGNATURE_PLACEHOLDER,
+      deadline: 0
+    }
+  ]);
   const { profile } = useProfileQuery(mission.profileId, !mission.profileId);
 
   // revalidate is required for post-verify, to update profile public page.
@@ -102,7 +104,7 @@ const Verify: FC<Props> = ({ mission, showModal, setShowModal }) => {
                 challenge: typedData.value.challenge,
                 deadline: typedData.value.deadline,
                 signature
-              }
+              } as any
             });
           });
           setTxHash(hash);
