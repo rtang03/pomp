@@ -1,6 +1,6 @@
-# mission-web3
+# Proof of Mission Protocol
 
-Proof of Concept (powered by Web3)
+Proof of Mission Protocol (powered by Web3)
 
 ## Introduction
 
@@ -10,39 +10,42 @@ There are two areas, (1) business functions, and (2) technical implementation, f
 ### About Dapp Technical Implementation
 
 - Authentication via Metamask (done)
-- Mobile web / Nextjs (done)
-- Deploy via Vercel (done)
-- Firebase hosting / functions / database (done)
-- Using Moralis V2 (Done)
-- Deploy smart contract via Hardhat (Done)
-- Indexer: Query with subGraph (Not done) 2Wk
-- Extend to using WalletConnect (Done)
+- Mobile web / Nextjs
+- Deploy via Vercel
+- Firebase hosting / functions / database with access control
+- Using Moralis V2
+- Deploy smart contract via Hardhat, to both Goerli and Mumbai
+- Extend to using WalletConnect
 - SEO (Done)
-- Responsive mobile web (Done)
+- Responsive mobile web
 
 ### About Dapp Business Features
 
-- UI for Creator (Done)
-- UI for Verifier (Fail / Verify Mission) (Done)
-- UI for Player (Start / Abort Mission) (Done)
-- UI - Achievement page (Done)
-- UI - Mission Start page (Done)
-- Leaderboard (not done)
-- Admin UI for governor (Not done)
+- UI for Creator
+- UI for Verifier (Fail / Verify Mission)
+- UI for Player (Start / Abort Mission)
+- UI - Achievement page with Visual Badge
+- UI - Mission Start page
+- Admin UI for governor
 
 ### About smart contract
 
-- Upgradeable Contract (done)
-- Whitelisted profile (done)
-- Role-based access control (done)
-- Escrow missionNFT during the mission journey (done)
-- Start / Abort / Complete / Verify / Fail mission (done)
-- Voting function (done) / Governor contract (not done)
-- Cancel mission by operator (not done)
-- Whitelisted verifier (not done)
-- Gasless Relayer (not done) 2Wk
-- Batch verify (not done)
-- Deploy to OpenZeppelin Defender (not done) 1Wk
+- Upgradeable Contract
+- Whitelisted profile
+- Role-based access control
+- Escrow missionNFT during the mission journey
+- Start / Abort / Complete / Verify / Fail mission
+- Batch verify
+
+Not Considered for now 
+
+- Leaderboard
+- Voting function (done) / Governor contract
+- Cancel mission by operator
+- Whitelisted verifier
+- Gasless Relayer
+- Deploy to OpenZeppelin Defender
+- Indexer: Query with subGraph
 
 ### Accreditation
 
