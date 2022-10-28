@@ -1,32 +1,13 @@
 # Changelog
 
-## [Unreleased](https://github.com/livibank/mission-web3/tree/HEAD)
+## [Unreleased](https://github.com/rtang03/pomp/tree/HEAD)
 
-[Full Changelog](https://github.com/livibank/mission-web3/compare/3e4cdac959525d8f8204320902c0c0dad4b51b31...HEAD)
-
-**Closed issues:**
-
-- Deploy to Polygon [\#33](https://github.com/livibank/mission-web3/issues/33)
-- Goal - Sep 8 - 14 [\#22](https://github.com/livibank/mission-web3/issues/22)
-- Goal - Aug 30 - Sep 5 [\#18](https://github.com/livibank/mission-web3/issues/18)
-- Goal - Aug 26 - 30 [\#13](https://github.com/livibank/mission-web3/issues/13)
-- Goal - Aug23 [\#5](https://github.com/livibank/mission-web3/issues/5)
-- Goal - Aug 22 [\#3](https://github.com/livibank/mission-web3/issues/3)
--  Goal - Aug 19 [\#2](https://github.com/livibank/mission-web3/issues/2)
-- Upgrade to Moralis V2 [\#1](https://github.com/livibank/mission-web3/issues/1)
+[Full Changelog](https://github.com/rtang03/pomp/compare/701eb98e5d615d1a4c4bb74af2931a9a8411a708...HEAD)
 
 **Merged pull requests:**
 
-- can run hardhat deploy to testnet [\#34](https://github.com/livibank/mission-web3/pull/34) ([rtang03](https://github.com/rtang03))
-- Bump @types/node from 18.7.6 to 18.7.18 [\#31](https://github.com/livibank/mission-web3/pull/31) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump wagmi from 0.6.3 to 0.6.6 [\#30](https://github.com/livibank/mission-web3/pull/30) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump framer-motion from 7.2.0 to 7.3.4 [\#29](https://github.com/livibank/mission-web3/pull/29) ([dependabot[bot]](https://github.com/apps/dependabot))
-- smart contract done [\#28](https://github.com/livibank/mission-web3/pull/28) ([rtang03](https://github.com/rtang03))
-- Bump @web3auth/web3auth from 1.1.4 to 2.1.2 [\#26](https://github.com/livibank/mission-web3/pull/26) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump moralis from 2.0.1 to 2.4.0 [\#23](https://github.com/livibank/mission-web3/pull/23) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Add VirtualMission smart contract with HH [\#12](https://github.com/livibank/mission-web3/pull/12) ([rtang03](https://github.com/rtang03))
-- hardhat added [\#6](https://github.com/livibank/mission-web3/pull/6) ([rtang03](https://github.com/rtang03))
-- Integrate with Firebase [\#4](https://github.com/livibank/mission-web3/pull/4) ([rtang03](https://github.com/rtang03))
+- fix wagmi breaking changes [\#7](https://github.com/rtang03/pomp/pull/7) ([rtang03](https://github.com/rtang03))
+- Fix breaking change in wagmi [\#6](https://github.com/rtang03/pomp/pull/6) ([rtang03](https://github.com/rtang03))
 
 
 
