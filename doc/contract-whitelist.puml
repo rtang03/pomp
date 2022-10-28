@@ -1,0 +1,13 @@
+@startuml
+header Profile whitelisting flow diagram
+title
+Profile whitelisting Flow
+end title
+
+autonumber
+
+== Whitelist wallet accounts ==
+Admin->HardhatCLI: whitelisted accounts
+HardhatCLI->PompContract: setMerkelRoot
+
+@enduml

@@ -1,0 +1,19 @@
+{
+  "name": "firebase-auth-functions",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "(cp -n src/serviceAccountCert.example.json src/serviceAccountCert.json | true) && tsc",
+    "build:watch": "tsc --watch",
+    "serve": "yarn run build && firebase emulators:start --only functions",
+    "shell": "yarn run build && firebase functions:shell",
+    "start": "yarn run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "private": true
+}

@@ -1,0 +1,49 @@
+@startuml
+header Compose Misson flow diagram
+title
+Compose Mission (Preparation Stage)
+end title
+
+autonumber
+
+actor "Creator" as CREATOR order 0
+participant "Browser" as BROWSER order 1
+database "Firestore" as FIRESTORE order 2 #White
+control "NextApi" as NEXTAPI order 3 #White
+control "InfuraApi" as INFURA order 4 #White
+
+CREATOR->BROWSER: fetch website
+
+activate BROWSER
+
+BROWSER->BROWSER: authenticate
+BROWSER->FIRESTORE: new firebase object
+FIRESTORE-->BROWSER: objectId
+BROWSER->BROWSER: route to /objectId
+
+deactivate BROWSER
+
+BROWSER->BROWSER: edit (title, desc, content, starttime, endtime)
+
+BROWSER->INFURA: Upload cover image to IPFS
+
+activate BROWSER
+
+INFURA-->BROWSER: (ipfs cid)
+BROWSER->NEXTAPI: /api/blurhash
+NEXTAPI-->BROWSER: (blurhash)
+
+deactivate BROWSER
+
+alt SAVE
+  BROWSER->FIRESTORE: save\n(title, desc, content, starttime,\nendtime, imageUrl, blurhash)
+  FIRESTORE-->BROWSER: (missionDocument)
+  BROWSER->NEXTAPI: revalidate /m/[slug]
+else PUBLISH
+  BROWSER->BROWSER: confirm
+  BROWSER->FIRESTORE: publish\n(title, desc, content, starttime,\nendtime, imageUrl, blurhash)
+  FIRESTORE-->BROWSER: (missionDocument)
+  BROWSER->NEXTAPI: revalidate / and /m/[slug]
+end
+
+@enduml

@@ -1,0 +1,6 @@
+.env
+whitelisted_prod.ts
+solcInputs/
+archive/
+.openzeppelin/unknown-1337.json
+.pendingTransactions

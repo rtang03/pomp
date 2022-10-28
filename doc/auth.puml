@@ -1,0 +1,75 @@
+@startuml
+header Authentication flow diagram
+title
+Authentication Flow
+end title
+
+autonumber "[0]"
+
+actor "User" as USER order 0
+participant "Wallet" as WALLET order 1
+participant "Browser" as BROWSER order 2
+database "Firebase" as FIREBASE order 3 #White
+control "MoralisApi" as MORALIS order 4 #White
+
+USER->BROWSER: fetch website
+
+activate BROWSER
+
+BROWSER->FIREBASE: request_message
+
+activate FIREBASE
+
+FIREBASE->MORALIS: 1.request_challenge\n2.Prepare EIP-4361
+
+activate MORALIS
+
+MORALIS->MORALIS: New session
+MORALIS-->FIREBASE: EIP-4361
+
+deactivate MORALIS
+
+FIREBASE->BROWSER: EIP-4361
+
+deactivate FIREBASE
+
+BROWSER->WALLET: 1.connect\n2.sign message
+
+deactivate BROWSER
+
+activate WALLET
+
+WALLET->USER: sign
+activate USER
+
+USER-->WALLET: signature
+deactivate USER
+
+WALLET-->BROWSER: signature
+
+deactivate WALLET
+activate BROWSER
+
+BROWSER->FIREBASE: issue_token\n(signature)
+
+activate FIREBASE
+
+FIREBASE->MORALIS: verify\n(signature)
+
+activate MORALIS
+
+MORALIS-->FIREBASE: (boolean, uid)
+
+deactivate MORALIS
+
+FIREBASE->FIREBASE: create profile (uid)
+FIREBASE-->BROWSER: 1.access_token\n2. uid
+
+deactivate FIREBASE
+
+BROWSER->FIREBASE: sign-in
+FIREBASE-->BROWSER: authenticated\nsession
+
+deactivate BROWSER
+
+@enduml

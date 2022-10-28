@@ -1,0 +1,30 @@
+export const ERRORS = {
+  SIGNATURE_INVALID: 'SignatureInvalid',
+  SIGNATURE_EXPIRED: 'SignatureExpired',
+  NOT_OWNER: 'NotOwner',
+  NOT_FOUND: 'NotFound',
+  EXPIRED: 'Expired',
+  SLUG_TAKEN: 'SlugTaken',
+  HANDLE_TAKEN: 'HandleTaken',
+  NOT_WHITELISTED: 'NotWhitelisted',
+  INVALID_LENGTH: 'InvalidLength',
+  CONTAINS_INVALID_CHARS: 'ContainsInvalidChars',
+  CLAIMED: 'Claimed',
+  NOT_READY: 'NotReady',
+  NOT_MATCHED: 'NotMatched',
+  NOT_VERIFIER: 'NotVerifier',
+  NOT_VERIFIABLE: 'NotVerifiable',
+  DENIED: 'Denied',
+  ZERO_SPENDER: 'ZeroSpender',
+  TOKEN_DOES_NOT_EXIST: 'TokenDoesNotExist',
+  ERC721_NOT_OWN: 'ERC721: transfer of token that is not own',
+  ERC721_TRANSFER_NOT_OWNER_OR_APPROVED: 'ERC721: transfer caller is not owner nor approved',
+  ERC721_QUERY_FOR_NONEXISTENT_TOKEN: 'ERC721: owner query for nonexistent token',
+  ERC20_TRANSFER_EXCEEDS_ALLOWANCE: 'ERC20: transfer amount exceeds allowance',
+  ERC20_INSUFFICIENT_ALLOWANCE: 'ERC20: insufficient allowance',
+  NO_SELECTOR:
+    "Transaction reverted: function selector was not recognized and there's no fallback function",
+  PAUSED: 'Paused',
+  NO_REASON_ABI_DECODE:
+    "Transaction reverted and Hardhat couldn't infer the reason. Please report this to help us improve Hardhat."
+};

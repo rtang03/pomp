@@ -1,0 +1,14 @@
+@startuml
+
+actor "Creator" as CREATOR order 0
+actor "Player" as PLAYER order 1
+participant "Pomp.com" as BROWSER_1 order 3
+entity "PompContract" as POMPCONTRACT order 5 #White
+
+autonumber "[0]"
+
+== Permit / SafeTransfer ==
+CREATOR->BROWSER_1: Permit
+
+
+@enduml

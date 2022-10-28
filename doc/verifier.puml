@@ -1,0 +1,38 @@
+@startuml
+header Batch Verification flow diagram
+title
+Batch Verification Flow (Ideation)
+end title
+
+actor "Player" as PLAYER order 0
+participant "Pomp.com" as BROWSER_1 order 3
+entity "PompContract" as POMPCONTRACT order 5 #White
+participant "Verifier.com" as BROWSER_2 order 6
+actor "Admin" as ADMIN order 7
+actor "Verifier" as VERIFIER order 9 #Gray
+
+autonumber "[0]"
+== Claim ==
+PLAYER->BROWSER_1: GET /m/[slug]
+BROWSER_1->BROWSER_2: redirect?profileId=&missionId=
+PLAYER->BROWSER_2: Claim completed
+
+loop (out-of-band)
+  VERIFIER->VERIFIER: Validate
+  VERIFIER->VERIFIER: generate\n1.code_verifier\n2.code_challenge
+  VERIFIER->ADMIN: Send \n(challengeHash)
+  ADMIN->POMPCONTRACT: Update MerkleRoot
+end
+
+alt Confirm
+BROWSER_2->PLAYER: Send (challenge)
+
+PLAYER->BROWSER_1: complete
+BROWSER_1->POMPCONTRACT: autoCompleteWithSig\n(challenge)
+POMPCONTRACT->POMPCONTRACT: autoVerify
+POMPCONTRACT-->BROWSER_1: (void)
+
+else Reject
+BROWSER_2->PLAYER: Reject (reason)
+end
+@enduml
