@@ -40,13 +40,15 @@ const Complete: FC<Props> = ({ mission, showModal, setShowModal, refetch }) => {
     signTypedDataAsync,
     writeAsync,
     resetAll
-  } = useCommon('completeWithSig', {
-    profileId: 0,
-    missionId: 0,
-    challenge: '',
-    signature: SIGNATURE_PLACEHOLDER,
-    deadline: 0
-  });
+  } = useCommon('completeWithSig', [
+    {
+      profileId: 0,
+      missionId: 0,
+      challenge: '',
+      signature: SIGNATURE_PLACEHOLDER,
+      deadline: 0
+    }
+  ]);
 
   return (
     <Formik
@@ -92,7 +94,7 @@ const Complete: FC<Props> = ({ mission, showModal, setShowModal, refetch }) => {
                 challenge: typedData.value.challenge,
                 deadline: typedData.value.deadline,
                 signature
-              }
+              } as any
             });
           });
           setTxHash(hash);

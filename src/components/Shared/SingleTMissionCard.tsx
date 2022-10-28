@@ -3,7 +3,6 @@ import { LinkTextButton } from '@components/UI/Button';
 import { Card } from '@components/UI/Card';
 import { useIpfsMetadataQuery } from '@hooks/useIpfsMetadataQuery';
 import type { TMission } from '@hooks/useProfileMissionQuery';
-import type { TContractInfiniteReadsRefetch } from '@hooks/useProfileMissionQuery';
 import { formatDate, getMissionId } from '@utils/formatter';
 import { getShimmer } from '@utils/getShimmer';
 import { shortenAddress } from '@utils/shortenAddress';
@@ -18,7 +17,7 @@ import Verify from './Verify';
 
 type Props = {
   mission: TMission;
-  refetch?: TContractInfiniteReadsRefetch;
+  refetch?: any;
   // the loggin address is role of Verifier in smart contract
   isVerifier: boolean;
   // Render from Creator Page. It does not mean to creator role

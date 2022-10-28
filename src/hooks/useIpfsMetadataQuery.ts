@@ -6,7 +6,7 @@ import { isMetadata, Metadata } from 'src/types';
 
 const LABEL = '[useIpfsMetadataQuery]';
 
-export const useIpfsMetadataQuery = (uri: string) => {
+export const useIpfsMetadataQuery = (uri?: string) => {
   const { dev } = useAppContext();
   const result = useQuery<Metadata | null>(['tokenURI', uri], fetchUriFunction, {
     enabled: uri?.startsWith('http'),

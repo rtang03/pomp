@@ -11,11 +11,11 @@ export const SingleNftByTokenId: FC<{
 }> = ({ tokenId }) => {
   const { theme } = useTheme();
   const {
-    data,
+    tokenURI,
     isSuccess: nftByIdSuccess,
     error: nftByIdError
   } = useNftById(BigNumber.from(tokenId).toHexString(), !tokenId);
-  const uri = data?.replace('ipfs://', `${IPFS_DEDICATED_GATEWAY}/`);
+  const uri = tokenURI?.replace('ipfs://', `${IPFS_DEDICATED_GATEWAY}/`);
   const { metadata, metadataError, isSuccess: ipfsMetadataSucess } = useIpfsMetadataQuery(uri);
   const title = getAttributebyTraitType(metadata?.attributes, 'title') as string;
 
@@ -27,7 +27,7 @@ export const SingleNftByTokenId: FC<{
         </>
       )}
       {(metadataError || nftByIdError) && (
-        <div className="text-[10px] md:text-base">Oops, fail to retrieve {data}</div>
+        <div className="text-[10px] md:text-base">Oops, fail to retrieve {tokenURI}</div>
       )}
     </>
   );

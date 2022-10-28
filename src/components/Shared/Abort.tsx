@@ -33,12 +33,14 @@ const Abort: FC<Props> = ({ mission, showModal, setShowModal, refetch }) => {
     signTypedDataAsync,
     writeAsync,
     resetAll
-  } = useCommon('abortWithSig', {
-    profileId: 0,
-    missionId: 0,
-    signature: SIGNATURE_PLACEHOLDER,
-    deadline: 0
-  });
+  } = useCommon('abortWithSig', [
+    {
+      profileId: 0,
+      missionId: 0,
+      signature: SIGNATURE_PLACEHOLDER,
+      deadline: 0
+    }
+  ]);
 
   return (
     <Formik
@@ -77,7 +79,7 @@ const Abort: FC<Props> = ({ mission, showModal, setShowModal, refetch }) => {
                 missionId: typedData.value.missionId,
                 deadline: typedData.value.deadline,
                 signature
-              }
+              } as any
             });
           });
           setTxHash(hash);

@@ -39,12 +39,16 @@ const TimelinedEvents: FC<Props> = ({ kind, isVerifier, isCreatorPage }) => {
               {missions && Array(missions) && missions.length > 0 ? (
                 <>
                   {missions.map((m) => (
-                    <SingleTMissionCard
-                      key={m.challengeHash}
-                      mission={m}
-                      isVerifier={isVerifier}
-                      isCreatorPage={isCreatorPage}
-                    />
+                    <>
+                      {m && (
+                        <SingleTMissionCard
+                          key={m.challengeHash}
+                          mission={m}
+                          isVerifier={isVerifier}
+                          isCreatorPage={isCreatorPage}
+                        />
+                      )}
+                    </>
                   ))}
                 </>
               ) : (

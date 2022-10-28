@@ -1,5 +1,5 @@
 import { useAppContext } from '@components/AppContext';
-import { useClaimableByAddress } from '@hooks/useProfileMissionQuery';
+import { type TAddress, useClaimableByAddress } from '@hooks/useProfileMissionQuery';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 
@@ -19,7 +19,7 @@ export const useCanClaim = () => {
 
   // check claimability
   const { canClaim, merkleroot, canClaimError, profileId, refetch } = useClaimableByAddress(
-    address as string,
+    address as TAddress,
     merkle?.proof,
     !isAuthenticated || !isValidWalletAccount || !merkle
   );
