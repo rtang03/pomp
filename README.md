@@ -17,7 +17,7 @@ There are two areas, (1) business functions, and (2) technical implementation, f
 - Deploy smart contract via Hardhat, to both Goerli and Mumbai
 - Extend to using WalletConnect
 - SEO (Done)
-- Responsive mobile web
+- Responsive web
 
 ### About Dapp Business Features
 
