@@ -78,7 +78,7 @@
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
-    "@ethersproject/providers": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
     "@khronus/time-cog": "^1.0.2",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.4",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.4",
