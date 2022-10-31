@@ -16,9 +16,9 @@ export const shortenAddress = (address: string, chars = 4) => {
     // throw Error(`Invalid 'address' parameter '${address}'.`);
     return address;
   }
-  return `${parsed.substring(0, chars)}...${parsed.substring(42 - chars)}`;
+  return `${parsed.substring(0, chars)}...${parsed.substring(address.length - chars)}`;
 };
 
 export const shortenTx = (txHash: string, chars = 4) => {
-  return `${txHash.substring(0, chars)}...${txHash.substring(42 - chars)}`;
+  return `${txHash.substring(0, chars)}...${txHash.substring(txHash.length - chars)}`;
 };
