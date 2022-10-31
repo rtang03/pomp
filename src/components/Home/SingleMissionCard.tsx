@@ -1,5 +1,6 @@
 import BlurImage from '@components/UI/BlurImage';
 import { Card } from '@components/UI/Card';
+import { formatDate } from '@utils/formatter';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -10,6 +11,7 @@ type Props = {
   mission: MissionDocument;
 };
 
+const LazyDateField = dynamic(() => import('@components/Home/LazyDateField'), { ssr: false });
 const CountdownComponent = dynamic(() => import('@components/Shared/CountdownComponent'), {
   ssr: false
 });
@@ -52,9 +54,13 @@ const SingleMissionCard: FC<Props> = ({ mission: m }) => {
             <div className="title-text line-clamp-3">{m.description || 'No description'}</div>
             {/* hit this issue https://github.com/vercel/next.js/discussions/39425 */}
             {/* Todo: Comment out Date field for now */}
-            {/*<div className="text-sm">*/}
-            {/*  {m.updatedAt && <span className="italic">{formatDate(m.updatedAt)}</span>}*/}
-            {/*</div>*/}
+            <div className="text-sm">
+              {m.updatedAt && (
+                <span className="italic">
+                  <LazyDateField date={formatDate(m.updatedAt)} />
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <div className="flex-col p-2 md:space-y-6">
