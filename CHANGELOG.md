@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- add loader [\#11](https://github.com/rtang03/pomp/pull/11) ([rtang03](https://github.com/rtang03))
 - fix date problem [\#10](https://github.com/rtang03/pomp/pull/10) ([rtang03](https://github.com/rtang03))
 - test release [\#9](https://github.com/rtang03/pomp/pull/9) ([rtang03](https://github.com/rtang03))
 - chore: fix env variables [\#8](https://github.com/rtang03/pomp/pull/8) ([rtang03](https://github.com/rtang03))
