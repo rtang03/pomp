@@ -10,7 +10,9 @@ import { useAccount } from 'wagmi';
 
 // need to CSR, coz of React-query cache
 const Listing = dynamic(() => import('./MissionListing'), { ssr: false });
-const URL = process.env.NEXT_PUBLIC_URL_DOMAIN || 'http://localhost:3000';
+const URL = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : 'http://localhost:3000';
 
 const PlayerPage: NextPageWithLayout = () => {
   const { user, isAuthenticating } = useAppContext();
