@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- chore: fix env variables [\#8](https://github.com/rtang03/pomp/pull/8) ([rtang03](https://github.com/rtang03))
 - fix wagmi breaking changes [\#7](https://github.com/rtang03/pomp/pull/7) ([rtang03](https://github.com/rtang03))
 - Fix breaking change in wagmi [\#6](https://github.com/rtang03/pomp/pull/6) ([rtang03](https://github.com/rtang03))
 
