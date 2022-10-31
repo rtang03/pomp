@@ -37,7 +37,7 @@ const Home: NextPageWithLayout<SiteProps> = ({ stringifiedData }) => {
           </div>
         )}
         {isAuthenticated && notWhitelistProfile && (
-          <div className="container items-center justify-start">You are not whitelisted</div>
+          <div className="container items-center justify-start">You are non-whitelisted</div>
         )}
         {isAuthenticated && canClaim && (
           <div className="container items-center justify-start">
