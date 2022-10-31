@@ -1,12 +1,8 @@
 module.exports = {
-  swcMinify: false,
   reactStrictMode: true,
   images: {
     domains: [
-      'avatars.dicebear.com',
-      'gateway.moralisipfs.com',
       'ipfs.infura.io',
-      'i3al5fdaammr.usemoralis.com',
       'avatar.tobi.sh',
       'ipfs.io',
       'infura-ipfs.io',
