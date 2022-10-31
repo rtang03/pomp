@@ -229,16 +229,18 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                       setStatus(STATUS.SENDING);
 
                       return writeAsync({
-                        recklesslySetUnpreparedArgs: {
-                          profileId: startTypedData.value.profileId,
-                          slug: startTypedData.value.slug,
-                          contentURI: startTypedData.value.contentURI,
-                          minutesToExpire: startTypedData.value.minutesToExpire,
-                          creator: startTypedData.value.creator,
-                          verifier: startTypedData.value.verifier,
-                          signature,
-                          deadline: startTypedData.value.deadline
-                        } as any
+                        recklesslySetUnpreparedArgs: [
+                          {
+                            profileId: startTypedData.value.profileId,
+                            slug: startTypedData.value.slug,
+                            contentURI: startTypedData.value.contentURI,
+                            minutesToExpire: startTypedData.value.minutesToExpire,
+                            creator: startTypedData.value.creator,
+                            verifier: startTypedData.value.verifier,
+                            signature: signature as TAddress,
+                            deadline: startTypedData.value.deadline
+                          }
+                        ]
                       });
                     }
                   );

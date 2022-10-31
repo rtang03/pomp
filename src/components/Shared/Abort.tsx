@@ -4,6 +4,7 @@ import TransactionStatus from '@components/Shared/TransactionStatus';
 import { logEvent } from '@firebase/analytics';
 import { useCommon } from '@hooks/useCommon';
 import type { TContractInfiniteReadsRefetch } from '@hooks/useProfileMissionQuery';
+import { type TAddress } from '@hooks/useProfileMissionQuery';
 import { elog, log } from '@utils/consoleLog';
 import { createTypedData } from '@utils/createTypedData';
 import { onFormSubmitError } from '@utils/onFormSubmitError';
@@ -74,12 +75,14 @@ const Abort: FC<Props> = ({ mission, showModal, setShowModal, refetch }) => {
             setStatus(STATUS.SENDING);
 
             return writeAsync({
-              recklesslySetUnpreparedArgs: {
-                profileId: typedData.value.profileId,
-                missionId: typedData.value.missionId,
-                deadline: typedData.value.deadline,
-                signature
-              } as any
+              recklesslySetUnpreparedArgs: [
+                {
+                  profileId: typedData.value.profileId,
+                  missionId: typedData.value.missionId,
+                  deadline: typedData.value.deadline,
+                  signature: signature as TAddress
+                }
+              ]
             });
           });
           setTxHash(hash);

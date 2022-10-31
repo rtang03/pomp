@@ -4,7 +4,7 @@ import SimpleActionModal from '@components/Shared/SimpleActionModal';
 import TransactionStatus from '@components/Shared/TransactionStatus';
 import { logEvent } from '@firebase/analytics';
 import { useCommon } from '@hooks/useCommon';
-import { useProfileQuery } from '@hooks/useProfileMissionQuery';
+import { type TAddress, useProfileQuery } from '@hooks/useProfileMissionQuery';
 import { elog, log } from '@utils/consoleLog';
 import { createTypedData } from '@utils/createTypedData';
 import { onFormSubmitError } from '@utils/onFormSubmitError';
@@ -99,12 +99,14 @@ const Verify: FC<Props> = ({ mission, showModal, setShowModal }) => {
             setStatus(STATUS.SENDING);
 
             return writeAsync({
-              recklesslySetUnpreparedArgs: {
-                profileId: typedData.value.profileId,
-                challenge: typedData.value.challenge,
-                deadline: typedData.value.deadline,
-                signature
-              } as any
+              recklesslySetUnpreparedArgs: [
+                {
+                  profileId: typedData.value.profileId,
+                  challenge: typedData.value.challenge,
+                  deadline: typedData.value.deadline,
+                  signature: signature as TAddress
+                }
+              ]
             });
           });
           setTxHash(hash);
