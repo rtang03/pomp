@@ -49,7 +49,9 @@ const SingleMissionCard: FC<Props> = ({ mission: m }) => {
                 </motion.button>
               </a>
             </Link>
-            <div className="title-text line-clamp-2">{m.description || 'No description'}</div>
+            <div className="title-text line-clamp-3">{m.description || 'No description'}</div>
+            {/* hit this issue https://github.com/vercel/next.js/discussions/39425 */}
+            {/* Todo: Comment out Date field for now */}
             {/*<div className="text-sm">*/}
             {/*  {m.updatedAt && <span className="italic">{formatDate(m.updatedAt)}</span>}*/}
             {/*</div>*/}
