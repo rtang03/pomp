@@ -44,7 +44,7 @@ const LABEL = '[Start]';
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
 const IMAGE_URL = (title: string) =>
   `${
-    process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
+    process.env.NEXT_PUBLIC_VERCEL_URL ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL : ''
   }/api/badge?title="${title}"&theme=light`;
 
 type ParsedLog = { missionId: string; profileId: string };
