@@ -104,7 +104,7 @@
     "@types/tailwindcss": "^3.1.0",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.13",
     "chai": "^4.3.6",
     "chai-ethers": "^0.0.1",
     "eslint": "^8.22.0",
