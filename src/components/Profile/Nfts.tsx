@@ -3,9 +3,9 @@ import { BigNumber } from 'ethers';
 import fill from 'lodash/fill';
 import isEqual from 'lodash/isEqual';
 import { type FC } from 'react';
+import { nftContract } from 'src/networks';
 import { useAccount, useContractRead } from 'wagmi';
 
-import { nftContract } from '../../networks';
 import { SingleNftByTokenId } from './SingleNft';
 
 const Nfts: FC = () => {
@@ -14,10 +14,11 @@ const Nfts: FC = () => {
     ...nftContract,
     functionName: 'balanceOf',
     args: [address as any],
-    enabled: !address
+    enabled: !!address
   });
   const isZero = isSuccess ? BigNumber.from(enumerableIndexes).eq('0x00') : null;
   // returns something like, ['0x01', '0x02', '0x03']
+
   const enumerable = isSuccess
     ? isZero
       ? []

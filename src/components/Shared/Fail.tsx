@@ -5,6 +5,7 @@ import TransactionStatus from '@components/Shared/TransactionStatus';
 import Input from '@components/UI/Input';
 import { logEvent } from '@firebase/analytics';
 import { useCommon } from '@hooks/useCommon';
+import { type TAddress } from '@hooks/useProfileMissionQuery';
 import { elog, log } from '@utils/consoleLog';
 import { createTypedData } from '@utils/createTypedData';
 import { onFormSubmitError } from '@utils/onFormSubmitError';
@@ -88,13 +89,15 @@ const Fail: FC<Props> = ({ mission, showModal, setShowModal }) => {
             setStatus(STATUS.SENDING);
 
             return writeAsync({
-              recklesslySetUnpreparedArgs: {
-                profileId: typedData.value.profileId,
-                reason: typedData.value.reason,
-                challenge: typedData.value.challenge,
-                deadline: typedData.value.deadline,
-                signature
-              } as any
+              recklesslySetUnpreparedArgs: [
+                {
+                  profileId: typedData.value.profileId,
+                  reason: typedData.value.reason,
+                  challenge: typedData.value.challenge,
+                  deadline: typedData.value.deadline,
+                  signature: signature as TAddress
+                }
+              ]
             });
           });
           setTxHash(hash);

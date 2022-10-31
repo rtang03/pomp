@@ -14,7 +14,7 @@ import type { UserProfile } from 'src/types';
 import { useAccount, useNetwork } from 'wagmi';
 
 const SiteLayout: FC<any> = ({ children }) => {
-  const [dev, setDev] = useState<boolean>(process.env.NEXT_PUBLIC_MAINNET !== 'true');
+  const [dev, setDev] = useState<boolean>(process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production');
   const [app, setApp] = useState<FirebaseService | null>();
   const isMounted = useRef<boolean>(false);
   const { resolvedTheme } = useTheme();
