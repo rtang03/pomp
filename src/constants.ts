@@ -39,7 +39,7 @@ export enum STATUS {
 }
 export const OG_URL = process.env.VERCEL_URL
   ? 'https://' + process.env.VERCEL_URL
-  : 'https://mission-web3.vercel.app';
+  : 'https://pomp-taupe.vercel.app';
 export const OG_DESCRIPTION = `Prove your mission achievement; built with Pomp protocol. You can compose, play and verifiy mission; producing mission NFT.`;
 export const BRAND_IMAGE = `${
   process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''

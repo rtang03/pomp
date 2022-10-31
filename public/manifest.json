@@ -1,34 +1,12 @@
 {
-  "name": "madseed",
-  "short_name": "madseed",
-  "description": "Social-to-Earn | Web3 | Marketplace",
+  "name": "pomp",
+  "short_name": "Proof of mission protocol",
+  "description": "Proof of mission protocol",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
   "scope": "/",
   "start_url": "/?utm_source=homescreen&utm_medium=shortcut",
-  "iconPath": "/logo/madseek-logo.svg",
-  "icons": [
-    {
-      "src": "https://www.madseed.xyz/logo/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://www.madseed.xyz/logo/icon-256x256.png",
-      "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "https://www.madseed.xyz/logo/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png"
-    },
-    {
-      "src": "https://www.madseed.xyz/logo/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
+  "iconPath": "/logo/madseed-logo.svg",
   "splash_pages": null
 }
