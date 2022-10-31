@@ -18,17 +18,19 @@ export const useCanClaim = () => {
   }, [address]);
 
   // check claimability
-  const { canClaim, merkleroot, canClaimError, profileId, refetch } = useClaimableByAddress(
-    address as TAddress,
-    merkle?.proof,
-    !isAuthenticated || !isValidWalletAccount || !merkle
-  );
+  const { canClaim, merkleroot, canClaimError, profileId, refetch, canClaimLoading } =
+    useClaimableByAddress(
+      address as TAddress,
+      merkle?.proof,
+      !isAuthenticated || !isValidWalletAccount || !merkle
+    );
 
   // Extra guard to ensure rootHash in NextApi, the same as on-chain root hash
   // this error may come from manual misconfiguration
   const isRoothashOutOfSync = merkle ? merkle.rootHash !== merkleroot : null;
 
   return {
+    canClaimLoading,
     notWhitelistProfile,
     isRoothashOutOfSync,
     canClaim,
