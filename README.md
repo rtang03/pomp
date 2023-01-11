@@ -36,6 +36,7 @@ There are two areas, (1) business functions, and (2) technical implementation, f
 - Escrow missionNFT during the mission journey
 - Start / Abort / Complete / Verify / Fail mission
 - Batch verify
+- Multi tenant support
 
 Not Considered for now 
 
