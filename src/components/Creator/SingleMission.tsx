@@ -64,9 +64,7 @@ const SingleMission: FC<Props> = ({ mission: m }) => {
           </div>
           {isPublished ? (
             <Link href={`/m/${m.id}`}>
-              <a>
-                <div className="link-text">{m.status}</div>
-              </a>
+              <div className="link-text">{m.status}</div>
             </Link>
           ) : (
             <a

@@ -15,7 +15,7 @@ export const TopNavMenu: FC<Tabs> = ({ tabs }) => {
       <div className="flex items-center justify-between space-x-10 md:space-x-12">
         {tabs.map(({ path, title }, index) => (
           <Link key={`${index}-${title}`} href={path}>
-            <a
+            <div
               className={
                 pathname === tabs[index].path ? 'border-b-4 border-black dark:border-white' : ''
               }
@@ -23,7 +23,7 @@ export const TopNavMenu: FC<Tabs> = ({ tabs }) => {
               <motion.button type="button" whileTap={{ scale: 0.95 }}>
                 {title}
               </motion.button>
-            </a>
+            </div>
           </Link>
         ))}
       </div>

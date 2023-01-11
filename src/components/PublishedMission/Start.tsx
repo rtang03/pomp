@@ -130,7 +130,7 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                 <div className="flex space-x-2 p-5 text-xl">
                   <div>Profile Not Found.</div>
                   <Link href={`/player/profile`}>
-                    <a className="link-text">Claim your profile</a>
+                    <div className="link-text">Claim your profile</div>
                   </Link>
                 </div>
               }
@@ -390,7 +390,7 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                     )}
                     <div className="my-10">
                       <Link href={`/player`}>
-                        <a className="link-text my-10">Go to Player Dashboard</a>
+                        <div className="link-text my-10">Go to Player Dashboard</div>
                       </Link>
                     </div>
                   </div>

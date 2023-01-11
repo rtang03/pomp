@@ -16,9 +16,7 @@ const Navbar: FC = () => {
     <header>
       <nav className="top-navigation h-20">
         <div className="flex flex-1 justify-start px-2 md:px-0">
-          <Link href={'/'}>
-            <a>Home</a>
-          </Link>
+          <Link href={'/'}>Home</Link>
         </div>
         <div className="flex items-center justify-end space-x-5">
           <ThemeButton theme={theme as string} />

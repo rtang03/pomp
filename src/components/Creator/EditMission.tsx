@@ -185,10 +185,10 @@ const EditMission: NextPageWithLayout = () => {
               titles={[
                 <div key="editor">Editor</div>,
                 <Link key="setting" shallow href={`#setting`} scroll={false}>
-                  <a>Setting</a>
+                  Setting
                 </Link>,
                 <Link key="publish" shallow href={`#publish`} scroll={false}>
-                  <a>Publish</a>
+                  Publish
                 </Link>
               ]}
               selectedTab={selectedTab}

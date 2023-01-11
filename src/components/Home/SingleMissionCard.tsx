@@ -45,11 +45,11 @@ const SingleMissionCard: FC<Props> = ({ mission: m }) => {
           </div>
           <div className="flex-col p-2">
             <Link href={`/m/${m.slug}`}>
-              <a className="text-xl text-blue-500 line-clamp-1">
+              <div className="text-xl text-blue-500 line-clamp-1">
                 <motion.button whileTap={{ scale: 0.95 }} type="button">
                   {m.title || 'No Title'}
                 </motion.button>
-              </a>
+              </div>
             </Link>
             <div className="title-text line-clamp-3">{m.description || 'No description'}</div>
             {/* hit this issue https://github.com/vercel/next.js/discussions/39425 */}

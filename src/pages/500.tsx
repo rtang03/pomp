@@ -19,7 +19,7 @@ export default function Custom500() {
             type="button"
             className="h-12 w-48 rounded-full border-2 border-red-500 hover:border-blue-700 dark:hover:border-white"
           >
-            <a>BACK HOME</a>
+            BACK HOME
           </motion.button>
         </Link>
       </div>

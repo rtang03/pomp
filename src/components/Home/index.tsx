@@ -53,9 +53,7 @@ const Home: NextPageWithLayout<SiteProps> = ({ stringifiedData }) => {
             {isCreator ? (
               <div>
                 <Link href={'/creator/timeline/explore'}>
-                  <a>
-                    <BigSquareBox text={<div className="text-xl">Creator</div>} />
-                  </a>
+                  <BigSquareBox text={<div className="text-xl">Creator</div>} />
                 </Link>
               </div>
             ) : (
@@ -76,9 +74,7 @@ const Home: NextPageWithLayout<SiteProps> = ({ stringifiedData }) => {
             ) : (
               <div>
                 <Link href={'/player'}>
-                  <a>
-                    <BigSquareBox text={<div className="text-xl">Player</div>} />
-                  </a>
+                  <BigSquareBox text={<div className="text-xl">Player</div>} />
                 </Link>
               </div>
             )}
@@ -86,9 +82,7 @@ const Home: NextPageWithLayout<SiteProps> = ({ stringifiedData }) => {
             {isVerifier ? (
               <div>
                 <Link href={'/verifier'}>
-                  <a>
-                    <BigSquareBox text={<div className="text-xl">Verifier</div>} />
-                  </a>
+                  <BigSquareBox text={<div className="text-xl">Verifier</div>} />
                 </Link>
               </div>
             ) : (
