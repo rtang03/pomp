@@ -1,0 +1,438 @@
+@startuml
+header Overall mission flow diagram
+title
+Overall Mission Flow (PLAYER)
+end title
+
+autonumber "[0]"
+
+actor "Player" as PLAYER order 0
+actor "Admin" as ADMIN order 1
+participant "Wallet" as WALLET order 2
+participant "Browser" as BROWSER order 3
+control "NextApi" as NEXTAPI order 4 #Gray
+control "InfuraApi" as INFURA order 5 #Gray
+database "Firebase" as FIREBASE order 6 #Gray
+entity "PompHub\nContract" as POMPCONTRACT order 7 #White
+entity "ProfileModule\nContract" as PROFILECONTRACT order 8 #White
+entity "MissionModule\nContract" as MISSIONCONTRACT order 9 #White
+entity "MissionNFT\nContract" as MISSIONNFT order 10 #White
+actor "Verifier" as VERIFIER order 11 #Gray
+
+== Request Whitelisting ==
+
+PLAYER->ADMIN: (out-of-band)\nrequest whitelist
+ADMIN-->PLAYER: (out-of-band)\nconfirmation
+ADMIN->NEXTAPI: (out-of-band) update whitelisted profiles
+ADMIN->POMPCONTRACT: (out-of-band) Write contract\nsetMerkelrootForProfiles (rootHash)
+POMPCONTRACT->PROFILECONTRACT: request
+PROFILECONTRACT-->POMPCONTRACT: (void)
+
+autonumber "[0]"
+
+== Create Profile ==
+PLAYER->BROWSER: fetch website
+
+activate BROWSER
+BROWSER->BROWSER: authenticate
+BROWSER->POMPCONTRACT: Read contract\n1. claimed\n2. profileIdByAddress\n3. canClaim\n4. merkleroot
+POMPCONTRACT->PROFILECONTRACT: request
+PROFILECONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->BROWSER: (boolean, profileId, boolean, bytes32)
+BROWSER->NEXTAPI: GET /whitelist/[address]
+NEXTAPI-->BROWSER: (proof, verified, rootHash)
+BROWSER->BROWSER: Compare rootHash from\nNextApi & PompContract
+BROWSER->BROWSER: Input handle
+BROWSER->POMPCONTRACT: Read contract\nprofileIdByHandle (handle)
+POMPCONTRACT->PROFILECONTRACT: request
+PROFILECONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->BROWSER: (boolean)
+BROWSER->BROWSER: isHandleAvailable
+BROWSER->WALLET: sign transaction
+
+deactivate BROWSER
+activate WALLET
+
+WALLET->PLAYER: request signing
+
+activate PLAYER
+
+PLAYER->WALLET: signature
+
+deactivate PLAYER
+
+WALLET->BROWSER: signature
+
+deactivate WALLET
+activate BROWSER
+
+BROWSER->POMPCONTRACT: createProfile(handle, proof)
+POMPCONTRACT->PROFILECONTRACT: request
+PROFILECONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->BROWSER: (hash, wait)
+
+
+deactivate BROWSER
+
+BROWSER->POMPCONTRACT: Read contract\nprofileById (profileId)
+
+activate BROWSER
+
+POMPCONTRACT->PROFILECONTRACT: request
+PROFILECONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->BROWSER: (ProfileStruct)
+
+deactivate BROWSER
+
+loop poll (optional)
+  BROWSER->POMPCONTRACT: wait (1)
+  POMPCONTRACT-->BROWSER: (receipt)
+  BROWSER->BROWSER: parse log
+end
+
+autonumber "[0]"
+
+== Start Mission (Escrow) ==
+
+PLAYER->BROWSER: fetch website
+BROWSER->BROWSER: Pick mission /m/[objectId]
+BROWSER->BROWSER: authenticate
+BROWSER->BROWSER: route to Start component
+
+BROWSER->POMPCONTRACT: missionIdBySlug
+POMPCONTRACT->MISSIONCONTRACT: request
+MISSIONCONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->BROWSER: (missionId)
+BROWSER->BROWSER: isNameAvailable
+BROWSER->POMPCONTRACT: getRoleHash (VERIFIER)
+POMPCONTRACT-->BROWSER: (roleHash)
+BROWSER->POMPCONTRACT: hasRole (roleHash, wallet)
+POMPCONTRACT-->BROWSER: (boolean)
+
+note over BROWSER : All checks pass
+
+group Submit [startWithSig]
+  BROWSER->INFURA: 1.Prepare metadata\n2.Ipfs-upload (metadata)
+
+  activate BROWSER
+
+  INFURA-->BROWSER: (ipfsUrl)
+
+  BROWSER->NEXTAPI: createStartTypedData\n(profileId, slug,\ncontentURI, verifier,\nminutesToExpire)
+  NEXTAPI->POMPCONTRACT: getSigNonce and\nmissionModuleAddress
+  POMPCONTRACT->MISSIONCONTRACT: request
+  MISSIONCONTRACT-->POMPCONTRACT: response
+  POMPCONTRACT-->NEXTAPI: (sigNonce, address)
+  NEXTAPI->NEXTAPI: getDeadline
+  NEXTAPI-->BROWSER: (startWithSigTypedData)
+
+  BROWSER->WALLET: sign (eip-712)
+
+  deactivate BROWSER
+
+  WALLET->PLAYER: request signing
+  PLAYER-->WALLET: (signature)
+  WALLET-->BROWSER: (signature)
+
+
+  BROWSER->WALLET: writeAsync\n(startWithSig)
+
+  deactivate BROWSER
+
+  WALLET->PLAYER: send transaction
+  PLAYER->WALLET: confirm
+  WALLET->BROWSER: confirm
+  BROWSER->POMPCONTRACT: startWithSig\n(profileId, slug, contentURI, verifier,\nminutesToExpire, signature, msg.sender)
+
+  activate BROWSER
+  POMPCONTRACT->PROFILECONTRACT: owner (profileId)
+  PROFILECONTRACT-->POMPCONTRACT: (address)
+  note over POMPCONTRACT: TODO: Missing Implementation\nEIP 2981 set royalty & receiver
+  POMPCONTRACT->MISSIONCONTRACT: startWithSig
+  MISSIONCONTRACT->MISSIONCONTRACT: verify signature\n& deadline
+  MISSIONCONTRACT->MISSIONNFT: safeMint
+  MISSIONNFT-->MISSIONCONTRACT: mintTo\nPOMPCONTRACT
+  MISSIONNFT->MISSIONNFT: setTokenRoyalty
+  MISSIONCONTRACT->MISSIONCONTRACT: emit Started
+  MISSIONCONTRACT-->POMPCONTRACT: (void)
+  POMPCONTRACT-->BROWSER: (hash, wait)
+
+  deactivate BROWSER
+
+
+  loop poll
+    BROWSER->POMPCONTRACT: wait (1)
+    POMPCONTRACT-->BROWSER: (receipt)
+    BROWSER->BROWSER: parse log
+  end
+
+  group Optional [Confirmations]
+    note over FIREBASE: Not implemented yet
+    BROWSER->FIREBASE: trigger confirmations (txHash)
+    FIREBASE-->BROWSER: (void)
+  end
+
+end
+
+autonumber "[0]"
+
+== Abort Mission ==
+PLAYER->BROWSER: fetch website
+BROWSER->BROWSER: browse mission
+BROWSER->NEXTAPI: createAbortTypedData\n(profileId, missionId)
+
+activate BROWSER
+
+NEXTAPI->POMPCONTRACT: getSigNonce and\nmissionModuleAddress
+POMPCONTRACT->MISSIONCONTRACT: request
+MISSIONCONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->NEXTAPI: (sigNonce, address)
+NEXTAPI->NEXTAPI: getDeadline
+NEXTAPI-->BROWSER: (abortWithSigTypedData)
+BROWSER->WALLET: sign (eip-712)
+
+deactivate BROWSER
+
+WALLET->PLAYER: request signing
+PLAYER-->WALLET: (signature)
+WALLET-->BROWSER: (signature)
+BROWSER->WALLET: writeAsync\n(abortWithSig)
+WALLET->PLAYER: send transaction
+PLAYER->WALLET: confirm
+WALLET->BROWSER: confirm
+BROWSER->POMPCONTRACT: abortWithSig\n(profileId, missionId, signature, deadline, msg.sender)
+
+activate BROWSER
+POMPCONTRACT->PROFILECONTRACT: owner (profileId)
+PROFILECONTRACT-->POMPCONTRACT: (address)
+POMPCONTRACT->MISSIONCONTRACT: abortWithSig
+MISSIONCONTRACT->MISSIONCONTRACT: verify signature\n& deadline
+MISSIONCONTRACT->MISSIONNFT: _burn (tokenId)
+MISSIONNFT->MISSIONNFT: _resetTokenRoyalty (tokenId)
+MISSIONNFT-->MISSIONCONTRACT: (void)
+MISSIONCONTRACT->MISSIONCONTRACT: State.Aborted
+MISSIONCONTRACT->MISSIONCONTRACT: emit Aborted
+MISSIONCONTRACT-->POMPCONTRACT: (void)
+POMPCONTRACT-->BROWSER: (hash, wait)
+
+deactivate BROWSER
+
+loop poll
+  BROWSER->POMPCONTRACT: wait (1)
+  POMPCONTRACT-->BROWSER: (receipt)
+  BROWSER->BROWSER: parse log
+end
+
+autonumber "[0]"
+
+== (Out-of-band) Challenge generation ==
+loop generate
+  VERIFIER->BROWSER: fetch website
+
+  activate BROWSER
+
+  BROWSER->NEXTAPI: generateChallenge ()
+  NEXTAPI-->BROWSER: (code_verifier, code_challenge)
+  BROWSER->VERIFIER: (code_verifier, code_challenge)
+
+  deactivate BROWSER
+
+  VERIFIER->VERIFIER: Save
+end
+
+PLAYER->VERIFIER: (out-of-band)\nObtain challenge (profileId, missionId)
+
+activate VERIFIER
+
+  VERIFIER->VERIFIER: Save\n(profileId,\nmissionId,\ncode_verifier)
+  VERIFIER-->PLAYER: (challenge)
+
+deactivate VERIFIER
+
+autonumber "[0]"
+
+== Complete Mission ==
+PLAYER->BROWSER: fetch website
+BROWSER->BROWSER: Browse mission
+BROWSER->BROWSER: Input challenge
+BROWSER->NEXTAPI: createCompleteTypedData\n(profileId, missionId,\nchallenge)
+
+activate BROWSER
+
+NEXTAPI->POMPCONTRACT: getSigNonce and\nmissionModuleAddress
+POMPCONTRACT->MISSIONCONTRACT: request
+MISSIONCONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->NEXTAPI: (sigNonce, address)
+NEXTAPI->NEXTAPI: getDeadline
+NEXTAPI-->BROWSER: (completeWithSigTypedData)
+BROWSER->WALLET: sign (eip-712)
+
+deactivate BROWSER
+
+WALLET->PLAYER: request signing
+PLAYER-->WALLET: (signature)
+WALLET-->BROWSER: (signature)
+BROWSER->WALLET: writeAsync\n(completeWithSig)
+WALLET->PLAYER: send transaction
+PLAYER->WALLET: confirm
+WALLET->BROWSER: confirm
+BROWSER->POMPCONTRACT: completeWithSig\n(profileId, missionId, challenge,\nsignature, deadline, msg.sender)
+
+activate BROWSER
+POMPCONTRACT->PROFILECONTRACT: owner (profileId)
+PROFILECONTRACT-->POMPCONTRACT: (address)
+POMPCONTRACT->MISSIONCONTRACT: completeWithSig
+MISSIONCONTRACT->MISSIONCONTRACT: verify signature\n& deadline
+MISSIONCONTRACT->MISSIONCONTRACT: check expiry
+MISSIONCONTRACT->MISSIONCONTRACT: check challenge\nlength
+MISSIONCONTRACT->MISSIONCONTRACT: State.Completed
+MISSIONCONTRACT->MISSIONCONTRACT: emit Completed
+MISSIONCONTRACT-->POMPCONTRACT: (void)
+POMPCONTRACT-->BROWSER: (hash, wait)
+
+deactivate BROWSER
+
+loop poll
+  BROWSER->POMPCONTRACT: wait (1)
+  POMPCONTRACT-->BROWSER: (receipt)
+  BROWSER->BROWSER: parse log
+  BROWSER->FIREBASE: Trigger cloudFunction
+  FIREBASE->VERIFIER: Notify VERIFIER
+end
+
+autonumber "[0]"
+
+== Verify Mission ==
+VERIFIER->BROWSER: fetch website
+BROWSER->POMPCONTRACT: query past 100 events (VERIFIED)
+POMPCONTRACT-->BROWSER: (VERIFIED)
+VERIFIER->VERIFIER: Lookup\ncode_challenge
+BROWSER->POMPCONTRACT: missionById
+POMPCONTRACT-->BROWSER: (mission)
+BROWSER->VERIFIER: mission details
+
+group Submit [verifyWithSig]
+  BROWSER->NEXTAPI: createVerifyTypedData\n(profileId, challenge)
+
+  activate BROWSER
+
+  NEXTAPI->POMPCONTRACT: getSigNonce and\nmissionModuleAddress
+  POMPCONTRACT->MISSIONCONTRACT: request
+  MISSIONCONTRACT-->POMPCONTRACT: response
+  POMPCONTRACT-->NEXTAPI: (sigNonce, address)
+  NEXTAPI->NEXTAPI: getDeadline
+  NEXTAPI-->BROWSER: (verifyWithSigTypedData)
+  BROWSER->WALLET: sign (eip-712)
+
+  deactivate BROWSER
+
+  WALLET->PLAYER: request signing
+  PLAYER-->WALLET: (signature)
+  WALLET-->BROWSER: (signature)
+  BROWSER->WALLET: writeAsync\n(verifyWithSig)
+  WALLET->PLAYER: send transaction
+  PLAYER->WALLET: confirm
+  WALLET->BROWSER: confirm
+  BROWSER->POMPCONTRACT: verifyWithSig\n(profileId, challenge, signature, deadline, msg.sender)
+
+  activate BROWSER
+  POMPCONTRACT->POMPCONTRACT: verify VERIFIER Role
+  POMPCONTRACT->MISSIONCONTRACT: verifyWithSig
+  MISSIONCONTRACT->MISSIONCONTRACT: verify signature\n& deadline
+  MISSIONCONTRACT->MISSIONCONTRACT: check challenge\nlength
+  MISSIONCONTRACT->MISSIONCONTRACT: verify challenge
+  MISSIONCONTRACT->MISSIONNFT: safeTransfer
+  MISSIONNFT-->MISSIONCONTRACT: transferTo\nPLAYER WALLET
+  MISSIONCONTRACT->MISSIONCONTRACT: State.Verified
+  MISSIONCONTRACT->MISSIONCONTRACT: emit Verified
+  MISSIONCONTRACT-->POMPCONTRACT: (void)
+  POMPCONTRACT-->BROWSER: (hash, wait)
+
+  deactivate BROWSER
+
+  loop poll
+    BROWSER->POMPCONTRACT: wait (1)
+    POMPCONTRACT-->BROWSER: (receipt)
+    BROWSER->BROWSER: parse log
+    BROWSER->NEXTAPI: GET /api/revalidate-profile
+    NEXTAPI->NEXTAPI: revalidate\n/a/[handle]
+    NEXTAPI-->BROWSER: (void)
+  end
+
+end
+
+autonumber "[0]"
+
+== Fail Mission ==
+VERIFIER->BROWSER: fetch website
+BROWSER->BROWSER: Browse mission
+BROWSER->BROWSER: 1.Input challenge\n2.Input reason
+BROWSER->NEXTAPI: createFailTypedData\n(profileId, challenge, reason)
+
+activate BROWSER
+
+NEXTAPI->POMPCONTRACT: getSigNonce and\nmissionModuleAddress
+POMPCONTRACT->MISSIONCONTRACT: request
+MISSIONCONTRACT-->POMPCONTRACT: response
+POMPCONTRACT-->NEXTAPI: (sigNonce, address)
+NEXTAPI->NEXTAPI: getDeadline
+NEXTAPI-->BROWSER: (failWithSigTypedData)
+BROWSER->WALLET: sign (eip-712)
+
+deactivate BROWSER
+
+WALLET->PLAYER: request signing
+PLAYER-->WALLET: (signature)
+WALLET-->BROWSER: (signature)
+BROWSER->WALLET: writeAsync\n(failWithSig)
+WALLET->PLAYER: send transaction
+PLAYER->WALLET: confirm
+WALLET->BROWSER: confirm
+BROWSER->POMPCONTRACT: failWithSig\n(profileId, challenge, reason,\nsignature, deadline, msg.sender)
+
+activate BROWSER
+POMPCONTRACT->POMPCONTRACT: verify VERIFIER Role
+POMPCONTRACT->MISSIONCONTRACT: failWithSig
+MISSIONCONTRACT->MISSIONCONTRACT: verify signature\n& deadline
+MISSIONCONTRACT->MISSIONCONTRACT: verify challenge
+MISSIONCONTRACT->MISSIONNFT: _burn (tokenId)
+MISSIONNFT->MISSIONNFT: _resetTokenRoyalty (tokenId)
+MISSIONNFT-->MISSIONCONTRACT: (void)
+MISSIONCONTRACT->MISSIONCONTRACT: State.Failed
+MISSIONCONTRACT->MISSIONCONTRACT: emit Failed
+MISSIONCONTRACT-->POMPCONTRACT: (void)
+POMPCONTRACT-->BROWSER: (hash, wait)
+
+deactivate BROWSER
+
+loop poll
+  BROWSER->POMPCONTRACT: wait (1)
+  POMPCONTRACT-->BROWSER: (receipt)
+  BROWSER->BROWSER: parse log
+end
+
+== Batch Verify (CLI-only) ==
+VERIFIER->POMPCONTRACT: batchVerifyWithSig (profileIds, challenges)
+
+activate POMPCONTRACT
+POMPCONTRACT->MISSIONCONTRACT: batchVerify\n(profileIds, challenges, msg.sender)
+MISSIONCONTRACT->MISSIONCONTRACT: verify signature\n& deadline
+
+loop validate-challenges
+  MISSIONCONTRACT->MISSIONCONTRACT: isValidChallenges\n(43-length)
+  MISSIONCONTRACT->MISSIONCONTRACT: NotFound
+  MISSIONCONTRACT->MISSIONCONTRACT: NotVerifier
+  MISSIONCONTRACT->MISSIONCONTRACT: NotVerifiable
+  MISSIONCONTRACT->MISSIONCONTRACT: NotMatched
+end
+
+MISSIONCONTRACT->MISSIONNFT: oneToManyTransfer\n(ownerIds, tokenIds)
+MISSIONNFT-->MISSIONCONTRACT: (void)
+MISSIONCONTRACT->MISSIONCONTRACT: State.Verified
+MISSIONCONTRACT->MISSIONCONTRACT: emit BatchVerified
+MISSIONCONTRACT-->POMPCONTRACT: (void)
+POMPCONTRACT-->VERIFIER: (txReceipt)
+
+deactivate POMPCONTRACT
+
+@enduml

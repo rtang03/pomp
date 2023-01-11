@@ -38,7 +38,7 @@ export const prepareAccounts = async () => {
   verifier = accounts[8];
   nonWhitelistedAccount = accounts[9];
   deployerAddress = await deployer.getAddress();
-  userAddress = await deployer.getAddress();
+  userAddress = await user.getAddress();
   userTwoAddress = await userTwo.getAddress();
   userThreeAddress = await userThree.getAddress();
   userFourAddress = await userFour.getAddress();
