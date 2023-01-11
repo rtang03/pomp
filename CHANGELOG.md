@@ -7,6 +7,7 @@
 **Merged pull requests:**
 
 - b4 upgrade next 13 [\#27](https://github.com/rtang03/pomp/pull/27) ([rtang03](https://github.com/rtang03))
+- Bump eslint-config-next from 12.2.5 to 13.1.1 [\#26](https://github.com/rtang03/pomp/pull/26) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump @types/react from 18.0.17 to 18.0.26 [\#23](https://github.com/rtang03/pomp/pull/23) ([dependabot[bot]](https://github.com/apps/dependabot))
 - fix incorrect env variable [\#17](https://github.com/rtang03/pomp/pull/17) ([rtang03](https://github.com/rtang03))
 - Bump autoprefixer from 10.4.8 to 10.4.13 [\#14](https://github.com/rtang03/pomp/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
