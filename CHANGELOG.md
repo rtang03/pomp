@@ -8,6 +8,7 @@
 
 - b4 upgrade next 13 [\#27](https://github.com/rtang03/pomp/pull/27) ([rtang03](https://github.com/rtang03))
 - fix incorrect env variable [\#17](https://github.com/rtang03/pomp/pull/17) ([rtang03](https://github.com/rtang03))
+- Bump @ethersproject/providers from 5.7.0 to 5.7.2 [\#13](https://github.com/rtang03/pomp/pull/13) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump plaiceholder from 2.4.0 to 2.5.0 [\#12](https://github.com/rtang03/pomp/pull/12) ([dependabot[bot]](https://github.com/apps/dependabot))
 - add loader [\#11](https://github.com/rtang03/pomp/pull/11) ([rtang03](https://github.com/rtang03))
 - fix date problem [\#10](https://github.com/rtang03/pomp/pull/10) ([rtang03](https://github.com/rtang03))
