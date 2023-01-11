@@ -42,10 +42,11 @@ type Props = {
 
 const LABEL = '[Start]';
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
+const trimify = (value: string): string => value?.replace(/[^\w\s\']|_/g, '').replace(/\s+/g, ' ');
 const IMAGE_URL = (title: string) =>
   `${
     process.env.NEXT_PUBLIC_VERCEL_URL ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL : ''
-  }/api/badge?title="${title}"&theme=light`;
+  }/api/badge?title=${trimify(title)}&theme=light`;
 
 type ParsedLog = { missionId: string; profileId: string };
 
