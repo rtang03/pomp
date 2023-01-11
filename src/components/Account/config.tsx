@@ -1,5 +1,5 @@
 import remove from 'lodash/remove';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 

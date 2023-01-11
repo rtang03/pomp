@@ -311,7 +311,7 @@ export const useProfileQuery: (
   return {
     ...contractRead,
     profile: contractRead?.data
-      ? <ProfileStruct>{
+      ? {
           missionCount: BigNumber.from(contractRead.data.missionCount).toNumber(),
           handle: contractRead.data.handle as string,
           owner: contractRead.data.owner as string
