@@ -41,8 +41,8 @@ const SingleMission: FC<Props> = ({ mission: m }) => {
                 width={100}
                 height={100}
                 layout="responsive"
-                alt={m.title ?? 'Unknown Thumbnail'}
                 objectFit="cover"
+                alt={m.title ?? 'Unknown Thumbnail'}
                 src={m.image}
                 blurDataURL={m.imageBlurhash as string}
                 placeholder="blur"

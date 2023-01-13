@@ -27,7 +27,7 @@ module.exports = {
         88: '22rem'
       },
       fontFamily: {
-        cal: ['Cal Sans', 'Inter var', 'sans-serif']
+        sans: ['var(--font-inter)', ...fontFamily.sans]
       },
       container: {
         center: true,

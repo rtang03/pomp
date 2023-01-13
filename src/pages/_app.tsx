@@ -1,6 +1,7 @@
 import '../globals.css';
 
 import SiteLayout from '@components/Layout/SiteLayout';
+import { Inter } from '@next/font/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { type NextPage } from 'next';
@@ -14,6 +15,8 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export type NextPageWithLayout<Props = any> = NextPage<Props> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -74,7 +77,9 @@ const App: NextPage<any> = ({ Component, pageProps }) => {
       <WagmiConfig client={client}>
         <QueryClientProvider client={queryClient}>
           <DefaultSeo {...SeoConfig} />
-          <SiteLayout>{getLayout(<Component {...pageProps} />)}</SiteLayout>
+          <main className={`${inter.variable} font-sans`}>
+            <SiteLayout>{getLayout(<Component {...pageProps} />)}</SiteLayout>
+          </main>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </WagmiConfig>

@@ -60,8 +60,8 @@ const SingleTMissionCard: FC<Props> = ({ mission, refetch, isVerifier, isCreator
                   width={120}
                   height={120}
                   layout="responsive"
-                  alt={name ?? 'Unknown Thumbnail'}
                   objectFit="cover"
+                  alt={name ?? 'Unknown Thumbnail'}
                   src={image}
                   blurDataURL={getShimmer()}
                   placeholder="blur"
@@ -96,7 +96,7 @@ const SingleTMissionCard: FC<Props> = ({ mission, refetch, isVerifier, isCreator
         </div>
         <div className="flex-col space-y-6 px-2">
           <div className="flex justify-start space-x-2 md:justify-end">
-            <div className="font-cal font-semibold">{status}</div>
+            <div className="font-sans font-semibold">{status}</div>
             <div>{getMissionId(mission)}</div>
           </div>
           {status === 'Started' && !isCreatorPage && (

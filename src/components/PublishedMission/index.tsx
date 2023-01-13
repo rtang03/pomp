@@ -64,14 +64,14 @@ const PublishedMission: NextPageWithLayout<SiteProps> = ({ stringifiedData }) =>
               className={`md:h-150 lg:2/3 relative m-auto mb-10 h-80 w-full max-w-screen-2xl overflow-hidden md:mb-20 md:w-5/6 md:rounded-2xl`}
             >
               {m?.image ? (
-                <BlurImage
-                  alt={m.title ?? 'mission cover'}
-                  layout="fill"
-                  objectFit="cover"
-                  placeholder="blur"
-                  blurDataURL={m.imageBlurhash ?? undefined}
-                  src={m.image}
-                />
+                <div className="relative h-[550px] w-full">
+                  <BlurImage
+                    alt={m.title ?? 'mission cover'}
+                    placeholder="blur"
+                    blurDataURL={m.imageBlurhash ?? undefined}
+                    src={m.image}
+                  />
+                </div>
               ) : (
                 <div className="absolute flex h-full w-full select-none items-center justify-center bg-gray-100 text-4xl text-gray-500">
                   ?
@@ -79,7 +79,7 @@ const PublishedMission: NextPageWithLayout<SiteProps> = ({ stringifiedData }) =>
               )}
             </div>
             <div className="m-auto w-full text-center md:w-7/12">
-              <h1 className="mb-10 font-cal text-3xl font-bold text-gray-800 dark:text-white md:text-6xl">
+              <h1 className="mb-10 font-sans text-3xl font-bold text-gray-800 dark:text-white md:text-6xl">
                 {m.title || 'Untitled'}
               </h1>
               {m?.updatedAt && (

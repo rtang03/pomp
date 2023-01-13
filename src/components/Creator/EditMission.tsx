@@ -204,7 +204,7 @@ const EditMission: NextPageWithLayout = () => {
             <TextareaAutosize
               readOnly={readOnly || confirmed}
               name="Title"
-              className="mt-6 w-full resize-none border-none py-4 px-2 font-cal text-5xl text-gray-800 placeholder:text-gray-500/50 focus:outline-none focus:ring-0 dark:bg-transparent dark:text-white"
+              className="mt-6 w-full resize-none border-none py-4 px-2 font-sans text-5xl text-gray-800 placeholder:text-gray-500/50 focus:outline-none focus:ring-0 dark:bg-transparent dark:text-white"
               placeholder="Untitled Mission"
               value={data.title}
               onInput={(e: ChangeEvent<HTMLTextAreaElement>) =>
@@ -257,14 +257,14 @@ const EditMission: NextPageWithLayout = () => {
               <div className="space-y-6">
                 <h2 className="page-section-title px-2">Slug</h2>
                 <div className="prefix-slug mx-2">
-                  <div className="whitespace-nowrap rounded-l-lg border-r border-gray-600 px-2 font-cal text-xs md:text-base">
+                  <div className="whitespace-nowrap rounded-l-lg border-r border-gray-600 px-2 font-sans text-xs md:text-base">
                     <span className="hidden md:block">{APP_URL}/m</span>
                   </div>
                   {value && (
                     <input
                       disabled
                       autoComplete="off"
-                      className="w-full rounded-none rounded-r-lg border-none bg-white py-3 px-2 font-cal text-xs text-gray-700 placeholder:text-gray-500/30 focus:outline-none focus:ring-0 dark:bg-transparent md:text-base"
+                      className="w-full rounded-none rounded-r-lg border-none bg-white py-3 px-2 font-sans text-xs text-gray-700 placeholder:text-gray-500/30 focus:outline-none focus:ring-0 dark:bg-transparent md:text-base"
                       type="text"
                       name="slug"
                       value={value.slug || id || ''}
@@ -351,7 +351,7 @@ const EditMission: NextPageWithLayout = () => {
               {value?.status !== 'Published' && (
                 <>
                   {canConfirm ? (
-                    <div className="flex items-center space-x-5 font-cal">
+                    <div className="flex items-center space-x-5 font-sans">
                       <input
                         id="confirm"
                         type="checkbox"

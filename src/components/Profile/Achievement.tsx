@@ -40,7 +40,7 @@ const Achievement: NextPageWithLayout<SiteProps> = ({ stringifiedData }) => {
         />
         <div className="flex flex-col items-center justify-center">
           <div className="m-auto w-full text-center md:w-7/12">
-            <h1 className="mb-10 font-cal text-3xl font-bold text-gray-800 dark:text-white md:text-6xl">
+            <h1 className="mb-10 font-sans text-3xl font-bold text-gray-800 dark:text-white md:text-6xl">
               Achievement
             </h1>
             <p className="m-auto w-10/12 text-base text-gray-600 dark:text-white/50 md:text-lg">

@@ -20,10 +20,8 @@ export default function BlurImage(props: BlurImageProps) {
         isLoading ? 'grayscale blur-2xl scale-110' : 'grayscale-0 blur-0 scale-100'
       )}
       onLoadingComplete={() => setLoading(false)}
-      style={{
-        maxWidth: '100%',
-        height: 'auto'
-      }}
+      fill
+      style={{ objectFit: 'cover' }}
     />
   );
 }

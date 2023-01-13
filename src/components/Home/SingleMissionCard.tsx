@@ -25,13 +25,9 @@ const SingleMissionCard: FC<Props> = ({ mission: m }) => {
         <div className="block overflow-hidden md:flex md:space-x-5">
           <div className="w-full md:w-32">
             {m.image ? (
-              <div>
+              <div className="relative h-[150px] w-[150px]">
                 <BlurImage
-                  width={100}
-                  height={100}
-                  layout="responsive"
                   alt={m.title ?? 'Unknown Thumbnail'}
-                  objectFit="cover"
                   src={m.image}
                   blurDataURL={m.imageBlurhash as string}
                   placeholder="blur"

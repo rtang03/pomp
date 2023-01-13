@@ -49,7 +49,7 @@ const Home: NextPageWithLayout<SiteProps> = ({ stringifiedData }) => {
         )}
         <Explore missions={m} showMore={showMore} setShowMore={setShowMore} />
         {isAuthenticated && !showMore && (
-          <div className="mb-10 block h-[500px] items-start justify-center space-y-2 font-cal md:flex md:space-y-0 md:space-x-2">
+          <div className="mb-10 block h-[500px] items-start justify-center space-y-2 font-sans md:flex md:space-y-0 md:space-x-2">
             {isCreator ? (
               <div>
                 <Link href={'/creator/timeline/explore'}>
