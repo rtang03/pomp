@@ -1,7 +1,7 @@
 import './globals.css';
 
 import { Inter } from '@next/font/google';
-import { type ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import NavBar from './NavBar';
 import SiteLayout from './SiteLayout';
@@ -14,7 +14,8 @@ const nav: ReactNode = (
     <div className="flex justify-center border-b border-gray-500/50"></div>
   </>
 );
-const RootLayout = ({ children }: { children: ReactNode }) => {
+
+const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
       <head>

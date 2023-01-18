@@ -1,23 +1,18 @@
 'use client';
 
-import BlurImage from '@components/UI/BlurImage';
 import { formatDate } from '@utils/formatter';
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { type FC } from 'react';
 import type { MissionDocument } from 'src/types';
 
+import CountdownComponent from '../Shared/CountdownComponent';
+import BlurImage from '../UI/BlurImage';
 import { Card } from '../UI/Card';
 
 type Props = {
   mission: MissionDocument;
 };
-
-const LazyDateField = dynamic(() => import('@components/Home/LazyDateField'), { ssr: false });
-const CountdownComponent = dynamic(() => import('@components/Shared/CountdownComponent'), {
-  ssr: false
-});
 
 const SingleMissionCard: FC<Props> = ({ mission: m }) => {
   const isMissionEnded = m.enddate.seconds < Math.floor(Date.now() / 1000);
@@ -54,11 +49,7 @@ const SingleMissionCard: FC<Props> = ({ mission: m }) => {
             {/* hit this issue https://github.com/vercel/next.js/discussions/39425 */}
             {/* Todo: Comment out Date field for now */}
             <div className="text-sm">
-              {m.updatedAt && (
-                <span className="italic">
-                  <LazyDateField date={formatDate(m.updatedAt)} />
-                </span>
-              )}
+              {m.updatedAt && <span className="italic">{formatDate(m.updatedAt)}</span>}
             </div>
           </div>
         </div>

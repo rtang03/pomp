@@ -18,7 +18,7 @@ const BigSquareBox: FC<Props> = ({ text, disabled, formSubmit, handleClick }) =>
     onClick={handleClick}
     className={`${
       disabled ? 'cursor-not-allowed opacity-50' : ''
-    } h-32 w-full rounded-xl border-2 border-teal-500 hover:border-blue-500 hover:text-blue-500 md:h-64 md:w-64`}
+    } h-32 w-full rounded-xl border-2 border-teal-500 font-sans hover:border-blue-500 hover:text-blue-500 md:h-64 md:w-64`}
   >
     {text}
   </motion.button>

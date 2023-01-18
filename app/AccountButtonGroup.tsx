@@ -43,7 +43,6 @@ const AccountButtonGroup = () => {
   const { data: ensName } = useEnsName({ address });
   const { signMessageAsync } = useSignMessage();
   const {
-    isValidWalletAccount,
     analytics,
     isAuthenticating,
     setIsAuthenticating,
@@ -168,10 +167,10 @@ const AccountButtonGroup = () => {
                 key={connector.id}
                 disabled={!connector.ready || isAuthenticating}
                 text={
-                  <>
+                  <div className="font-sans">
                     {connector.name}
                     {isAuthenticating && connector.id === pendingConnector?.id && ' (connecting)'}
-                  </>
+                  </div>
                 }
                 handleClick={async () => {
                   await authentiate(connector);
