@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { type FC } from 'react';
-import { staffs } from 'src/data/staffs';
-import { useAccount } from 'wagmi';
 
 type Tabs = { tabs: { path: string; title: string }[] };
 
@@ -34,25 +32,3 @@ export const TopNavMenu: FC<Tabs> = ({ tabs }) => {
     </div>
   );
 };
-
-export const PlayerNavMenu = () => {
-  const { address } = useAccount();
-  const isStaff = address ? staffs.includes(address) : false;
-  const tabs = [
-    { path: '/', title: 'Explore' },
-    { path: '/player', title: 'Player' },
-    { path: '/player/profile', title: 'Profile' }
-  ];
-  isStaff && tabs.push({ path: '/player/admin', title: 'Admin' });
-  return <TopNavMenu tabs={tabs} />;
-};
-
-export const VerifierNavMenu = () => (
-  <TopNavMenu
-    tabs={[
-      { path: '/', title: 'Explore' },
-      { path: '/verifier', title: 'Verifier' },
-      { path: '/verifier/tool', title: 'Tool' }
-    ]}
-  />
-);

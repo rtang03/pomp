@@ -23,7 +23,7 @@ const CreatorMain: FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<number>(0);
 
   useEffect(() => {
-    docRef && router.push(`/creator/${docRef.id}`);
+    docRef && router.push(`/edit/${docRef.id}`);
   }, [docRef, router]);
 
   if (isAuthenticating) return <Loader className="h-[800-px]" />;

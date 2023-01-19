@@ -1,10 +1,14 @@
 import Main from './Main';
 
-const PlayerPage = () => {
+const PlayerPage = async () => {
   return (
-    <>
-      <Main />
-    </>
+    <div className="page-layout">
+      <div className="container items-center justify-start">
+        <div className="page-main">
+          <Main />
+        </div>
+      </div>
+    </div>
   );
 };
 

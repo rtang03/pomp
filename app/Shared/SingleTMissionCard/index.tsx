@@ -53,7 +53,7 @@ const Index: FC<{
     <div>
       <Card className="block justify-between space-y-2 md:flex md:space-x-10">
         <div className="block overflow-hidden md:flex md:space-x-5">
-          <div className="w-full overflow-hidden md:h-40 md:w-40">
+          <div className="w-full overflow-hidden md:h-[220px] md:w-40">
             {image ? (
               <div className="relative h-[150px] w-[150px]">
                 <BlurImage

@@ -54,7 +54,7 @@ const SingleMission: FC<Props> = ({ mission: m }) => {
           )}
         </div>
         <div className="flex-col p-2">
-          <Link href={`/creator/${m.id}`}>
+          <Link href={`/edit/${m.id}`}>
             <div className="text-xl text-blue-500 line-clamp-1">{m.title || 'No Title'}</div>
           </Link>
           <div className="title-text line-clamp-2">{m.description || 'No description'}</div>
