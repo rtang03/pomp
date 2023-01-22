@@ -82,3 +82,4 @@ Source code in this repo comes from below material.
 - https://vercel.com/docs/concepts/functions/edge-functions/og-image-examples
 - https://github.com/vercel/examples/blob/main/edge-functions/vercel-og-nextjs/pages/index.tsx
 - https://github.com/dievardump/EIP2981-implementation
+- https://github.com/WITS/next-themes#avoid-hydration-mismatch

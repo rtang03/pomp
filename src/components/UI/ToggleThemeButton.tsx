@@ -1,11 +1,12 @@
 import MotionToggle from '@components/UI/MotionToggle';
 import { useTheme } from 'next-themes';
-import { type FC } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { BsSun } from 'react-icons/bs';
 import { MdOutlineDarkMode } from 'react-icons/md';
 
-const ToggleThemeButton: FC<{ theme: string }> = ({ theme }) => {
-  const { setTheme } = useTheme();
+const ToggleThemeButton: FC<{ theme: string }> = ({ theme: theme0 }) => {
+  const [mounted, setMounted] = useState(false);
+  const { setTheme, theme } = useTheme();
   const Button1 = () => (
     <button
       onClick={() => {
@@ -25,6 +26,14 @@ const ToggleThemeButton: FC<{ theme: string }> = ({ theme }) => {
       <BsSun className="text-2xl" />
     </button>
   );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <MotionToggle
