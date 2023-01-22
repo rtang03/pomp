@@ -1,9 +1,11 @@
 import { getApps } from '@firebase/app';
 import { createFirebaseApp, initApp } from '@utils/firebaseClient';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { notFound } from 'next/navigation';
+import { isMissionDocument } from 'src/types';
 
+import { getData } from './getData';
 import Main from './Main';
 
 const EMAIL = process.env.FIREBASE_ADMIN_EMAIL;
@@ -25,26 +27,11 @@ export const generateStaticParams = async () => {
 
 const MissionPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  const data = await getData(id);
+  const stringifiedData = JSON.stringify(data);
 
-  !id && notFound();
+  !isMissionDocument(data) && notFound();
 
-  const _apps = getApps();
-  const app = _apps.length > 0 ? initApp(_apps[0]) : createFirebaseApp();
-
-  if (!app?.db || !app?.auth) {
-    console.error(new Error('Firebase not ready'));
-    throw new Error('Firebase not ready');
-  }
-
-  if (!EMAIL || !PASSWORD) throw new Error('Invalid email / password');
-
-  const user = await signInWithEmailAndPassword(app.auth, EMAIL, PASSWORD);
-  if (!user) throw new Error(`failed to signInWithEmailAndPassword`);
-
-  const snapshot = await getDoc(doc(app.db, 'mission', id as string));
-  const stringifiedData = JSON.stringify(snapshot.data());
-
-  console.log('server: ', stringifiedData);
   return (
     <>
       <Main stringifiedData={stringifiedData} />

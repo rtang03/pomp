@@ -59,7 +59,7 @@
     "moralis": "^2.6.0",
     "nanoid": "^4.0.0",
     "next": "next@canary",
-    "next-seo": "^5.8.0",
+    "next-seo": "^5.15.0",
     "next-themes": "npm:@wits/next-themes",
     "pkce-challenge": "^3.0.0",
     "plaiceholder": "^2.5.0",

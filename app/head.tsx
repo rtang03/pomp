@@ -1,10 +1,6 @@
-const Head = () => {
-  return (
-    <>
-      <title></title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </>
-  );
-};
+import { NextSeo } from 'next-seo';
+import NEXT_SEO_DEFAULT from 'next-seo.config';
+
+const Head = () => <NextSeo {...NEXT_SEO_DEFAULT} useAppDir />;
 
 export default Head;
