@@ -3,7 +3,9 @@ import { BRAND_IMAGE } from 'src/constants';
 import { PageSEO } from '../../Shared/SEO';
 import { getData } from './getData';
 
-const Head = async ({ params }: { params: { id: string } }) => {
+/* @ts-expect-error Server Component */
+async function Head(props) {
+  const { params } = props;
   const { id } = params;
   const data = await getData(id);
 
@@ -20,6 +22,6 @@ const Head = async ({ params }: { params: { id: string } }) => {
       }
     />
   );
-};
+}
 
 export default Head;

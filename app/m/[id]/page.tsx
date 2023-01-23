@@ -5,13 +5,15 @@ import { collection, getDocs } from 'firebase/firestore';
 import { notFound } from 'next/navigation';
 import { isMissionDocument } from 'src/types';
 
+import type { GenerateStaticParams } from '../../types/next';
 import { getData } from './getData';
 import Main from './Main';
 
 const EMAIL = process.env.FIREBASE_ADMIN_EMAIL;
 const PASSWORD = process.env.FIREBASE_ADMIN_PASSWORD;
 
-export const generateStaticParams = async () => {
+/* @ts-expect-error Server Component */
+export const generateStaticParams: GenerateStaticParams<{ id: string }> = async () => {
   const _apps = getApps();
   const app = _apps.length > 0 ? initApp(_apps[0]) : createFirebaseApp();
 
@@ -22,11 +24,21 @@ export const generateStaticParams = async () => {
   if (!user) return { paths: [{ params: { id: '' } }], fallback: 'blocking' };
 
   const querySnapshot = await getDocs(collection(app.db, 'mission'));
-  return querySnapshot.docs.map(({ id }) => ({ id }));
+
+  const result: { id: string }[] = [];
+
+  querySnapshot.docs.forEach(({ id }) => result.push({ id }));
+
+  return result;
 };
 
-const MissionPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+/* @ts-expect-error Server Component */
+async function MissionPage(props) {
+  const { params } = props;
+  const id = params?.id;
+
+  if (!id) return null;
+
   const data = await getData(id);
   const stringifiedData = JSON.stringify(data);
 
@@ -37,6 +49,6 @@ const MissionPage = async ({ params }: { params: { id: string } }) => {
       <Main stringifiedData={stringifiedData} />
     </>
   );
-};
+}
 
 export default MissionPage;

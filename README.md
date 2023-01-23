@@ -83,3 +83,4 @@ Source code in this repo comes from below material.
 - https://github.com/vercel/examples/blob/main/edge-functions/vercel-og-nextjs/pages/index.tsx
 - https://github.com/dievardump/EIP2981-implementation
 - https://github.com/WITS/next-themes#avoid-hydration-mismatch
+- https://github.com/garmeeh/next-seo/blob/master/APP_DIRECTORY.md
