@@ -3,8 +3,9 @@
 import { motion } from 'framer-motion';
 import type { Dispatch, FC, ReactNode } from 'react';
 
+import Modal from '@/UI/Modal';
+
 import LoadingDots from './LoadingDots';
-import Modal from './Modal';
 
 type Props = {
   showModal: boolean;

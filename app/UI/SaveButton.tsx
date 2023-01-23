@@ -8,7 +8,7 @@ import {
   forwardRef
 } from 'react';
 
-import LoadingDots from './LoadingDots';
+import LoadingDots from '@/UI/LoadingDots';
 
 interface SaveProps
   extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {

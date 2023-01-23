@@ -4,10 +4,10 @@ import { useMissionsByAddress } from '@hooks/useMissionsByAddress';
 import { motion } from 'framer-motion';
 import { type FC } from 'react';
 
-import SingleTMissionCard from '../Shared/SingleTMissionCard';
-import { LinkTextButton } from '../UI/Button';
-import { NoFeedFound } from '../UI/EmptyState';
-import Loader from '../UI/Loader';
+import SingleTMissionCard from '@/Shared/SingleTMissionCard';
+import { LinkTextButton } from '@/UI/Button';
+import { NoFeedFound } from '@/UI/EmptyState';
+import Loader from '@/UI/Loader';
 
 const MissionListing: FC = () => {
   const {

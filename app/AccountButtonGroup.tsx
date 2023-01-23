@@ -9,7 +9,6 @@ import {
   signOut
 } from '@firebase/auth';
 import { httpsCallable } from '@firebase/functions';
-import { elog } from '@utils/consoleLog';
 import { shortenAddress } from '@utils/shortenAddress';
 import { BigNumber } from 'ethers';
 import { motion } from 'framer-motion';
@@ -27,11 +26,12 @@ import {
   useSignMessage
 } from 'wagmi';
 
-import BigSquareBox from './UI/BigSquareBox';
-import { Button } from './UI/Button';
-import LoadingDots from './UI/LoadingDots';
-import Modal from './UI/Modal';
-import ToggleThemeButton from './UI/ToggleThemeButton';
+import BigSquareBox from '@/UI/BigSquareBox';
+import { Button } from '@/UI/Button';
+import LoadingDots from '@/UI/LoadingDots';
+import Modal from '@/UI/Modal';
+import ToggleThemeButton from '@/UI/ToggleThemeButton';
+import { elog } from '@/utils/consoleLog';
 
 const AccountButtonGroup = () => {
   const { theme } = useTheme();

@@ -1,12 +1,11 @@
 'use client';
 
 import { useAppContext } from '@components/AppContext';
-import { elog } from '@utils/consoleLog';
 import { Form, Formik } from 'formik';
-import type { FC } from 'react';
-import { useState } from 'react';
+import { type FC, useState } from 'react';
 
-import { LinkTextButton } from '../../UI/Button';
+import { LinkTextButton } from '@/UI/Button';
+import { elog } from '@/utils/consoleLog';
 
 const ToolMain: FC = () => {
   const { dev } = useAppContext();

@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { Card } from '../../UI/Card';
+import { Card } from '@/UI/Card';
 
 const Shimmer = () => (
   <Card className="flex w-full justify-between p-5">

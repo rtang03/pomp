@@ -5,8 +5,9 @@ import { BigNumber } from 'ethers';
 import fill from 'lodash/fill';
 import isEqual from 'lodash/isEqual';
 import { type FC } from 'react';
-import { nftContract } from 'src/networks';
 import { useAccount, useContractRead } from 'wagmi';
+
+import { nftContract } from '@/utils/networks';
 
 import { SingleNftByTokenId } from './SingleNft';
 

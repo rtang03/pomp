@@ -4,12 +4,12 @@ import { useMissionByChallenge } from '@hooks/useProfileMissionQuery';
 import { Form, Formik } from 'formik';
 import { motion } from 'framer-motion';
 import { type FC, useState } from 'react';
-import { MIN_CHALLENGE_LENGTH } from 'src/constants';
 import * as Yup from 'yup';
 
-import ChallengeInputField from '../Shared/ChallengeInputField';
-import SingleTMissionCard from '../Shared/SingleTMissionCard';
-import { NoFeedFound } from '../UI/EmptyState';
+import ChallengeInputField from '@/Shared/ChallengeInputField';
+import SingleTMissionCard from '@/Shared/SingleTMissionCard';
+import { NoFeedFound } from '@/UI/EmptyState';
+import { MIN_CHALLENGE_LENGTH } from '@/utils/constants';
 
 const SearchByChallenge: FC = () => {
   const [challenge, setChallenge] = useState<string>();

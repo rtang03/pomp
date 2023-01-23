@@ -3,17 +3,17 @@
 import { useAppContext } from '@components/AppContext';
 import { logEvent } from '@firebase/analytics';
 import { useCommon } from '@hooks/useCommon';
-import { TAddress, TContractInfiniteReadsRefetch } from '@hooks/useProfileMissionQuery';
-import { elog, log } from '@utils/consoleLog';
-import { createTypedData } from '@utils/createTypedData';
-import { onFormSubmitError } from '@utils/onFormSubmitError';
+import { type TAddress, TContractInfiniteReadsRefetch } from '@hooks/useProfileMissionQuery';
 import { Form, Formik } from 'formik';
 import type { Dispatch, FC } from 'react';
-import { CONFIRMATION_TIMES, SIGNATURE_PLACEHOLDER, STATUS } from 'src/constants';
-import type { MissionStruct } from 'src/types';
 
-import TransactionStatus from '../../Shared/TransactionStatus';
-import SimpleActionModal from '../../UI/SimpleActionModal';
+import TransactionStatus from '@/Shared/TransactionStatus';
+import type { MissionStruct } from '@/types/PompContractStruct';
+import SimpleActionModal from '@/UI/SimpleActionModal';
+import { elog, log } from '@/utils/consoleLog';
+import { CONFIRMATION_TIMES, SIGNATURE_PLACEHOLDER, STATUS } from '@/utils/constants';
+import { createTypedData } from '@/utils/createTypedData';
+import { onFormSubmitError } from '@/utils/onFormSubmitError';
 
 type Props = {
   mission: MissionStruct & { missionId: number };

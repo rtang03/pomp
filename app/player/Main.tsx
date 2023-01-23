@@ -6,7 +6,8 @@ import Custom404 from '@pages/404';
 import { type FC } from 'react';
 import { useAccount } from 'wagmi';
 
-import Loader from '../UI/Loader';
+import Loader from '@/UI/Loader';
+
 import MissionListing from './MissionListing';
 
 const URL = process.env.NEXT_PUBLIC_VERCEL_URL

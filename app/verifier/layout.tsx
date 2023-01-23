@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
 
-import { TopNavMenu } from '../Shared/TopNavMenu';
+import TopNavMenu from '@/Shared/TopNavMenu';
 
 const VerifierLayout: FC<{ children: ReactNode }> = ({ children }) => (
   <div className="py-10">

@@ -1,14 +1,14 @@
 'use client';
 
-import { formatDate } from '@utils/formatter';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { type FC } from 'react';
-import type { MissionDocument } from 'src/types';
 
-import CountdownComponent from '../Shared/CountdownComponent';
-import BlurImage from '../UI/BlurImage';
-import { Card } from '../UI/Card';
+import CountdownComponent from '@/Shared/CountdownComponent';
+import type { MissionDocument } from '@/types/MissionDocument';
+import BlurImage from '@/UI/BlurImage';
+import { Card } from '@/UI/Card';
+import { formatDate } from '@/utils/formatter';
 
 type Props = {
   mission: MissionDocument;

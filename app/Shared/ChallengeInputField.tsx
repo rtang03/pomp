@@ -2,7 +2,7 @@
 
 import type { FC, ReactNode } from 'react';
 
-import Input from '../UI/Input';
+import Input from '@/UI/Input';
 
 type Props = { setFieldValue: any; disabled: boolean; prefix?: ReactNode };
 

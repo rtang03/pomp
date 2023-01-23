@@ -3,7 +3,10 @@
 import cn from 'clsx';
 import Image from 'next/image';
 import { type ComponentProps, useState } from 'react';
-import type { WithClassName } from 'src/types';
+
+export type WithClassName<T = {}> = T & {
+  className?: string;
+};
 
 interface BlurImageProps extends WithClassName, ComponentProps<typeof Image> {
   alt: string;

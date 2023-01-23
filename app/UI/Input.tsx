@@ -3,8 +3,7 @@
 import clsx from 'clsx';
 import { ErrorMessage, Field } from 'formik';
 import { motion } from 'framer-motion';
-import { type ComponentProps, forwardRef } from 'react';
-import { ReactNode } from 'react';
+import { type ComponentProps, type ReactNode, forwardRef } from 'react';
 
 interface Props extends Omit<ComponentProps<'input'>, 'prefix'> {
   label?: string | ReactNode;

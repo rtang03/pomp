@@ -1,14 +1,15 @@
 'use client';
 
-import { DocumentData, Query } from '@firebase/firestore';
+import { type DocumentData, Query } from '@firebase/firestore';
 import { usePaginatedFirestore } from '@hooks/usePaginatedFirestore';
 import isEqual from 'lodash/isEqual';
 import { type FC, useState } from 'react';
-import type { MissionDocument } from 'src/types';
 
-import MissionShimmer from '../Shared/Shimmer/MissionShimmer';
-import { NoFeedFound } from '../UI/EmptyState';
-import Pagination from '../UI/Pagination';
+import MissionShimmer from '@/Shared/Shimmer/MissionShimmer';
+import type { MissionDocument } from '@/types/MissionDocument';
+import { NoFeedFound } from '@/UI/EmptyState';
+import Pagination from '@/UI/Pagination';
+
 import SingleMission from './SingleMission';
 
 type Props = {

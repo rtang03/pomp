@@ -7,7 +7,7 @@ import { type FC } from 'react';
 
 type Tabs = { tabs: { path: string; title: string }[] };
 
-export const TopNavMenu: FC<Tabs> = ({ tabs }) => {
+const TopNavMenu: FC<Tabs> = ({ tabs }) => {
   const pathname = usePathname();
 
   return (
@@ -32,3 +32,5 @@ export const TopNavMenu: FC<Tabs> = ({ tabs }) => {
     </div>
   );
 };
+
+export default TopNavMenu;

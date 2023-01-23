@@ -3,8 +3,8 @@
 import type { Dispatch, FC, ReactNode } from 'react';
 import { GiGreenPower } from 'react-icons/gi';
 
-import Modal from './Modal';
-import WarningMessage from './WarningMessage';
+import Modal from '@/UI/Modal';
+import WarningMessage from '@/UI/WarningMessage';
 
 export const ConnectWalletMessage = () => (
   <WarningMessage

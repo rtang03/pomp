@@ -5,7 +5,7 @@ import type { FC, ReactNode } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 import { FaRegCopy } from 'react-icons/fa';
 
-import LoadingDots from './LoadingDots';
+import LoadingDots from '@/UI/LoadingDots';
 
 type Props = {
   formSubmit?: boolean;

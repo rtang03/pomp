@@ -5,20 +5,20 @@ import { onAuthStateChanged, User } from '@firebase/auth';
 import { doc, getDoc, setDoc } from '@firebase/firestore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { elog } from '@utils/consoleLog';
 import { createFirebaseApp, FirebaseService } from '@utils/firebaseClient';
-import { getToastOptions } from '@utils/getToastOptions';
 import { ThemeProvider, useTheme } from 'next-themes';
 import { type FC, type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import toaster, { Toaster } from 'react-hot-toast';
 import toast from 'react-hot-toast';
-import { supportedChainIds } from 'src/constants';
-import { UserProfile } from 'src/types';
 import { chain, configureChains, createClient, useAccount, useNetwork, WagmiConfig } from 'wagmi';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+
+import { UserProfile } from '@/types/UserProfile';
+import { elog } from '@/utils/consoleLog';
+import { supportedChainIds } from '@/utils/constants';
 
 // see https://github.com/pacocoursey/next-themes/issues/152
 
@@ -62,6 +62,28 @@ const client = createClient({
 });
 
 const queryClient = new QueryClient();
+
+const getToastOptions = (resolvedTheme: any) => ({
+  style: {
+    background: resolvedTheme === 'dark' ? '#18181B' : '',
+    color: resolvedTheme === 'dark' ? '#fff' : ''
+  },
+  success: {
+    className: 'border border-green-500',
+    iconTheme: {
+      primary: '#10B981',
+      secondary: 'white'
+    }
+  },
+  error: {
+    className: 'border border-red-500',
+    iconTheme: {
+      primary: '#EF4444',
+      secondary: 'white'
+    }
+  },
+  loading: { className: 'border border-gray-300' }
+});
 
 const SiteLayout: FC<{ nav: ReactNode; children: ReactNode }> = ({ nav, children }) => {
   const [dev, setDev] = useState<boolean>(process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production');

@@ -4,23 +4,23 @@ import { useAppContext } from '@components/AppContext';
 import { logEvent } from '@firebase/analytics';
 import { useCommon } from '@hooks/useCommon';
 import { TAddress, useProfileQuery } from '@hooks/useProfileMissionQuery';
-import { elog, log } from '@utils/consoleLog';
-import { createTypedData } from '@utils/createTypedData';
-import { onFormSubmitError } from '@utils/onFormSubmitError';
 import { Form, Formik } from 'formik';
 import type { Dispatch, FC } from 'react';
+import * as Yup from 'yup';
+
+import ChallengeInputField from '@/Shared/ChallengeInputField';
+import TransactionStatus from '@/Shared/TransactionStatus';
+import type { MissionStruct } from '@/types/PompContractStruct';
+import SimpleActionModal from '@/UI/SimpleActionModal';
+import { elog, log } from '@/utils/consoleLog';
 import {
   CONFIRMATION_TIMES,
   MIN_CHALLENGE_LENGTH,
   SIGNATURE_PLACEHOLDER,
   STATUS
-} from 'src/constants';
-import type { MissionStruct } from 'src/types';
-import * as Yup from 'yup';
-
-import SimpleActionModal from '../../UI/SimpleActionModal';
-import ChallengeInputField from '../ChallengeInputField';
-import TransactionStatus from '../TransactionStatus';
+} from '@/utils/constants';
+import { createTypedData } from '@/utils/createTypedData';
+import { onFormSubmitError } from '@/utils/onFormSubmitError';
 
 type Props = {
   mission: MissionStruct & { missionId: number };

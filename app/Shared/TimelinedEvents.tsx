@@ -3,11 +3,12 @@
 import { type ParsedEvent, useContractEvents } from '@hooks/useContractEvents';
 import { useMissionByIds } from '@hooks/useProfileMissionQuery';
 import { type FC } from 'react';
-import { OOPS } from 'src/constants';
 
-import { LinkTextButton } from '../UI/Button';
-import { NoFeedFound } from '../UI/EmptyState';
-import Loader from '../UI/Loader';
+import { LinkTextButton } from '@/UI/Button';
+import { NoFeedFound } from '@/UI/EmptyState';
+import Loader from '@/UI/Loader';
+import { OOPS } from '@/utils/constants';
+
 import SingleTMissionCard from './SingleTMissionCard';
 
 const TimelinedEvents: FC<{

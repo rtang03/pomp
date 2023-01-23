@@ -5,7 +5,7 @@ import { type FC, useEffect, useState } from 'react';
 import { BsSun } from 'react-icons/bs';
 import { MdOutlineDarkMode } from 'react-icons/md';
 
-import MotionToggle from './MotionToggle';
+import MotionToggle from '@/UI/MotionToggle';
 
 // see https://github.com/WITS/next-themes#avoid-hydration-mismatch
 

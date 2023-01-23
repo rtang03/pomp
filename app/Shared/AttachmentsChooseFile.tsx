@@ -3,7 +3,6 @@
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
-import { elog } from '@utils/consoleLog';
 import {
   type ProcessServerConfigFunction,
   type RevertServerConfigFunction,
@@ -22,6 +21,8 @@ import { motion } from 'framer-motion';
 import { type Dispatch, type FC, useState } from 'react';
 import { FilePond, registerPlugin } from 'react-filepond';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+
+import { elog } from '@/utils/consoleLog';
 
 registerPlugin(
   FilePondPluginImageExifOrientation,

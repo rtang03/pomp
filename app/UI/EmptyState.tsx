@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import { GiDesert } from 'react-icons/gi';
 
-import { Card, CardBody } from './Card';
+import { Card, CardBody } from '@/UI/Card';
 
 interface Props {
   message: ReactNode;

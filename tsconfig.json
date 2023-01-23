@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2019",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,31 +16,19 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components*": [
-        "src/components*"
-      ],
-      "@abis*": [
-        "src/abis*"
-      ],
-      "@utils*": [
-        "src/utils*"
-      ],
-      "@gql*": [
-        "src/graphql*"
-      ],
-      "@generated*": [
-        "src/generated*"
-      ],
-      "@hooks*": [
-        "src/hooks*"
-      ],
-      "@pages*": [
-        "src/pages*"
-      ]
+      "@/UI*": ["app/UI*"],
+      "@/Shared*": ["app/Shared*"],
+      "@/types*": ["app/types*"],
+      "@/utils*": ["app/utils*"],
+      "@components*": ["src/components*"],
+      "@abis*": ["src/abis*"],
+      "@utils*": ["src/utils*"],
+      "@gql*": ["src/graphql*"],
+      "@generated*": ["src/generated*"],
+      "@hooks*": ["src/hooks*"],
+      "@pages*": ["src/pages*"]
     },
-    "types": [
-      "mocha"
-    ],
+    "types": ["mocha"],
     "plugins": [
       {
         "name": "next"
@@ -57,14 +41,6 @@
       "module": "commonjs"
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "./smart-contract"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "./smart-contract"]
 }

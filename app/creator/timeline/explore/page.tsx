@@ -1,4 +1,4 @@
-import TimelinedEvents from '../../../Shared/TimelinedEvents';
+import TimelinedEvents from '@/Shared/TimelinedEvents';
 
 const TimelinePage = () => {
   return (

@@ -3,9 +3,10 @@ import { createFirebaseApp, initApp } from '@utils/firebaseClient';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import { notFound } from 'next/navigation';
-import { isMissionDocument } from 'src/types';
 
-import type { GenerateStaticParams } from '../../types/next';
+import { isMissionDocument } from '@/types/MissionDocument';
+import type { GenerateStaticParams } from '@/types/next';
+
 import { getData } from './getData';
 import Main from './Main';
 

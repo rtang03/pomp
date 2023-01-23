@@ -7,18 +7,19 @@ import { useDebounce } from '@hooks/useDebounce';
 import { usePompPrepareWrite } from '@hooks/usePompOrNFTContract';
 import { useProfileIdByHandleQuery, useProfileQuery } from '@hooks/useProfileMissionQuery';
 import Custom404 from '@pages/404';
-import { elog, log } from '@utils/consoleLog';
 import { Form, Formik } from 'formik';
 import { type FC, useState } from 'react';
 import toast from 'react-hot-toast';
-import { OOPS, STATUS } from 'src/constants';
 import { useContractWrite } from 'wagmi';
 import * as Yup from 'yup';
 
-import Input from '../../UI/Input';
-import Loader from '../../UI/Loader';
-import LoadingDots from '../../UI/LoadingDots';
-import SaveButton from '../../UI/SaveButton';
+import Input from '@/UI/Input';
+import Loader from '@/UI/Loader';
+import LoadingDots from '@/UI/LoadingDots';
+import SaveButton from '@/UI/SaveButton';
+import { elog, log } from '@/utils/consoleLog';
+import { OOPS, STATUS } from '@/utils/constants';
+
 import Admin from './Admin';
 import Nfts from './Nfts';
 

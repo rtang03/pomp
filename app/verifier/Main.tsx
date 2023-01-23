@@ -4,9 +4,10 @@ import { useAppContext } from '@components/AppContext';
 import Custom404 from '@pages/404';
 import { type FC, useState } from 'react';
 
-import TimelinedEvents from '../Shared/TimelinedEvents';
-import Loader from '../UI/Loader';
-import TabGroup from '../UI/TabGroup';
+import TimelinedEvents from '@/Shared/TimelinedEvents';
+import Loader from '@/UI/Loader';
+import TabGroup from '@/UI/TabGroup';
+
 import SearchByChallenge from './SearchByChallenge';
 
 const VerifierMain: FC = () => {

@@ -4,18 +4,18 @@ import { useAppContext } from '@components/AppContext';
 import { type TransactionReceipt } from '@ethersproject/abstract-provider';
 import { usePompPrepareWrite } from '@hooks/usePompOrNFTContract';
 import { type TAddress, useHasRoleQuery, useRoleHashQuery } from '@hooks/useProfileMissionQuery';
-import { elog, log } from '@utils/consoleLog';
-import { onFormSubmitError } from '@utils/onFormSubmitError';
 import { Form, Formik } from 'formik';
 import { type FC, useRef, useState } from 'react';
-import { ADDRESS_LENGTH, OOPS, STATUS, ZERO_ADDRESS } from 'src/constants';
-import { staffs } from 'src/data/staffs';
 import { useAccount, useContractWrite } from 'wagmi';
 import * as Yup from 'yup';
 
-import Input from '../../UI/Input';
-import LoadingDots from '../../UI/LoadingDots';
-import SaveButton from '../../UI/SaveButton';
+import Input from '@/UI/Input';
+import LoadingDots from '@/UI/LoadingDots';
+import SaveButton from '@/UI/SaveButton';
+import { elog, log } from '@/utils/consoleLog';
+import { ADDRESS_LENGTH, OOPS, STATUS, ZERO_ADDRESS } from '@/utils/constants';
+import { onFormSubmitError } from '@/utils/onFormSubmitError';
+import { staffs } from '@/utils/staffs';
 
 const LABEL = '[AddRole]';
 

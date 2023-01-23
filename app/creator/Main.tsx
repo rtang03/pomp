@@ -5,14 +5,15 @@ import { addDoc, collection, DocumentReference, orderBy, query, where } from '@f
 import Custom404 from '@pages/404';
 import { useRouter } from 'next/navigation';
 import { type FC, useEffect, useState } from 'react';
-import type { MissionDocument } from 'src/types';
 import { useAccount } from 'wagmi';
 
-import NewItem from '../Shared/NewItem';
-import Loader from '../UI/Loader';
-import LoadingDots from '../UI/LoadingDots';
-import SimplePlusButton from '../UI/SimplePlusButton';
-import TabGroup from '../UI/TabGroup';
+import NewItem from '@/Shared/NewItem';
+import type { MissionDocument } from '@/types/MissionDocument';
+import Loader from '@/UI/Loader';
+import LoadingDots from '@/UI/LoadingDots';
+import SimplePlusButton from '@/UI/SimplePlusButton';
+import TabGroup from '@/UI/TabGroup';
+
 import MissionListing from './MissionListing';
 
 const CreatorMain: FC = () => {

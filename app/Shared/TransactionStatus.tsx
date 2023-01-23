@@ -1,10 +1,10 @@
 'use client';
 
 import { type FC } from 'react';
-import { LOCAL_CHAINID } from 'src/constants';
 import { useNetwork } from 'wagmi';
 
-import ViewAddressOnExplorer from './ViewAddressOnExplorer';
+import ViewAddressOnExplorer from '@/Shared/ViewAddressOnExplorer';
+import { LOCAL_CHAINID } from '@/utils/constants';
 
 const TransactionStatus: FC<{ status?: any; txHash: string | undefined }> = ({
   status,

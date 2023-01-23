@@ -3,7 +3,8 @@
 import { NextSeo } from 'next-seo';
 import { OpenGraphMedia, OpenGraphProfile } from 'next-seo/lib/types';
 import { type FC } from 'react';
-import { BRAND_IMAGE, OG_DESCRIPTION, OG_URL } from 'src/constants';
+
+import { BRAND_IMAGE, OG_DESCRIPTION, OG_URL } from '@/utils/constants';
 
 export const PageSEO: FC<{ title: string; description: string; imageUrl: string }> = ({
   imageUrl,

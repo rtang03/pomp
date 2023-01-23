@@ -9,14 +9,15 @@ import { motion } from 'framer-motion';
 import isEqual from 'lodash/isEqual';
 import Link from 'next/link';
 import { type FC, ReactNode, useState } from 'react';
-import { type MissionDocument } from 'src/types';
 import { useAccount } from 'wagmi';
 
-import BigSquareBox from '../UI/BigSquareBox';
-import { SmallBackButton } from '../UI/Button';
-import { ModalWithConnectWalletMessage } from '../UI/ConnectWalletMessage';
-import { NoFeedFound } from '../UI/EmptyState';
-import Pagination from '../UI/Pagination';
+import { type MissionDocument } from '@/types/MissionDocument';
+import BigSquareBox from '@/UI/BigSquareBox';
+import { SmallBackButton } from '@/UI/Button';
+import { ModalWithConnectWalletMessage } from '@/UI/ConnectWalletMessage';
+import { NoFeedFound } from '@/UI/EmptyState';
+import Pagination from '@/UI/Pagination';
+
 import SingleMissionCard from './SingleMissionCard';
 
 const DEFAULT_PAGE_SIZE = 5;

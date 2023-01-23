@@ -7,40 +7,29 @@ import { logEvent } from '@firebase/analytics';
 import { doc, setDoc } from '@firebase/firestore';
 import { useTypedDocument } from '@hooks/useTypedDocument';
 import Custom404 from '@pages/404';
-import { elog, log } from '@utils/consoleLog';
-import { formatDate } from '@utils/formatter';
-import saveImage from '@utils/saveImage';
 import pickBy from 'lodash/pickBy';
 import Link from 'next/link';
 import { type ChangeEvent, type FC, useCallback, useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import TextareaAutosize from 'react-textarea-autosize';
-import { APP_URL, IPFS_DEDICATED_GATEWAY, OOPS } from 'src/constants';
-import type { MissionDocument } from 'src/types';
 
-import AttachmentsChooseFile from '../../Shared/AttachmentsChooseFile';
-import ContentMarkdown from '../../Shared/ContentMarkdown';
-import BlurImage from '../../UI/BlurImage';
-import FooterAction from '../../UI/FooterAction';
-import Loader from '../../UI/Loader';
-import SaveButton from '../../UI/SaveButton';
-import TabGroup from '../../UI/TabGroup';
+import AttachmentsChooseFile from '@/Shared/AttachmentsChooseFile';
+import ContentMarkdown from '@/Shared/ContentMarkdown';
+import type { MissionData } from '@/types/MissionData';
+import type { MissionDocument } from '@/types/MissionDocument';
+import BlurImage from '@/UI/BlurImage';
+import FooterAction from '@/UI/FooterAction';
+import Loader from '@/UI/Loader';
+import SaveButton from '@/UI/SaveButton';
+import TabGroup from '@/UI/TabGroup';
+import { elog, log } from '@/utils/consoleLog';
+import { APP_URL, IPFS_DEDICATED_GATEWAY, OOPS } from '@/utils/constants';
+import { formatDate } from '@/utils/formatter';
+import saveImage from '@/utils/saveImage';
+
 import { CONTENT_PLACEHOLDER } from './placeholder';
 
 export type TAttachment = { item: string; type: string };
-
-export type MissionData = {
-  title: string | undefined;
-  description: string | undefined;
-  content: string | undefined;
-  image: string | undefined;
-  imageBlurhash: string | undefined;
-  imageType: string | undefined;
-  slug: string | undefined;
-  status: string | undefined;
-  startdate: Date | null;
-  enddate: Date | null;
-};
 
 const SECRET = process.env.NEXT_PUBLIC_REVALIDATE_SECRET;
 const LABEL = '[EditMission]';
