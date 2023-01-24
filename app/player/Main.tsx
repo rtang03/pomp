@@ -1,11 +1,11 @@
 'use client';
 
 import { useAppContext } from '@components/AppContext';
-import { type TAddress, useProfileByAddress } from '@hooks/useProfileMissionQuery';
 import Custom404 from '@pages/404';
 import { type FC } from 'react';
 import { useAccount } from 'wagmi';
 
+import { type TAddress, useProfileByAddress } from '@/hooks/useProfileMissionQuery';
 import Loader from '@/UI/Loader';
 
 import MissionListing from './MissionListing';

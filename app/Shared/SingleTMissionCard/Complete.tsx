@@ -2,13 +2,12 @@
 
 import { useAppContext } from '@components/AppContext';
 import { logEvent } from '@firebase/analytics';
-import { useCommon } from '@hooks/useCommon';
-import type { TContractInfiniteReadsRefetch } from '@hooks/useProfileMissionQuery';
-import { TAddress } from '@hooks/useProfileMissionQuery';
 import { Form, Formik } from 'formik';
 import type { Dispatch, FC } from 'react';
 import * as Yup from 'yup';
 
+import useCommon from '@/hooks/useCommon';
+import type { TAddress, TContractInfiniteReadsRefetch } from '@/hooks/useProfileMissionQuery';
 import ChallengeInputField from '@/Shared/ChallengeInputField';
 import TransactionStatus from '@/Shared/TransactionStatus';
 import type { MissionStruct } from '@/types/PompContractStruct';

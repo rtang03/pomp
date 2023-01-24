@@ -1,4 +1,3 @@
-import { SingleNftByTokenUri } from '@components/Profile/SingleNft';
 import { AchievementSEO } from '@components/Shared/SEO';
 import Loader from '@components/UI/Loader';
 import type { NextPageWithLayout } from '@pages/_app';
@@ -8,6 +7,8 @@ import { useRouter } from 'next/router';
 import { BRAND_IMAGE } from 'src/constants';
 import type { MissionStruct, SiteProps } from 'src/types';
 import { isProfileStruct } from 'src/types';
+
+import { SingleNftByTokenUri } from './SingleNft';
 
 const Achievement: NextPageWithLayout<SiteProps> = ({ stringifiedData }) => {
   const router = useRouter();

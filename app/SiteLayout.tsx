@@ -5,11 +5,9 @@ import { onAuthStateChanged, User } from '@firebase/auth';
 import { doc, getDoc, setDoc } from '@firebase/firestore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { createFirebaseApp, FirebaseService } from '@utils/firebaseClient';
 import { ThemeProvider, useTheme } from 'next-themes';
 import { type FC, type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
-import toaster, { Toaster } from 'react-hot-toast';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { chain, configureChains, createClient, useAccount, useNetwork, WagmiConfig } from 'wagmi';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
@@ -19,6 +17,7 @@ import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { UserProfile } from '@/types/UserProfile';
 import { elog } from '@/utils/consoleLog';
 import { supportedChainIds } from '@/utils/constants';
+import { createFirebaseApp, FirebaseService } from '@/utils/firebaseClient';
 
 // see https://github.com/pacocoursey/next-themes/issues/152
 
@@ -89,7 +88,7 @@ const SiteLayout: FC<{ nav: ReactNode; children: ReactNode }> = ({ nav, children
   const [dev, setDev] = useState<boolean>(process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production');
   const [app, setApp] = useState<FirebaseService | null>();
   const isMounted = useRef<boolean>(false);
-  const { resolvedTheme, theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAuthenticating, setIsAuthenticating] = useState<boolean>(false);
@@ -122,7 +121,7 @@ const SiteLayout: FC<{ nav: ReactNode; children: ReactNode }> = ({ nav, children
       },
       (error) => {
         elog('[SiteLayout]', error);
-        toaster.error('Auth error');
+        toast.error('Auth error');
       }
     );
     // Unsubscribe auth listener on unmount

@@ -1,10 +1,10 @@
 'use client';
 
-import { elog } from '@utils/consoleLog';
 import { type Options, create } from 'ipfs-http-client';
 import { nanoid } from 'nanoid';
 
 import type { Metadata } from '@/types/Metadata';
+import { elog } from '@/utils/consoleLog';
 
 const projectId = process.env.NEXT_PUBLIC_INFURA_IPFS_PROJID;
 const projectSecret = process.env.NEXT_PUBLIC_INFURA_IPFS_PROJSEC;

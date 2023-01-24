@@ -9,7 +9,6 @@ import {
   signOut
 } from '@firebase/auth';
 import { httpsCallable } from '@firebase/functions';
-import { shortenAddress } from '@utils/shortenAddress';
 import { BigNumber } from 'ethers';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
@@ -32,6 +31,7 @@ import LoadingDots from '@/UI/LoadingDots';
 import Modal from '@/UI/Modal';
 import ToggleThemeButton from '@/UI/ToggleThemeButton';
 import { elog } from '@/utils/consoleLog';
+import { shortenAddress } from '@/utils/shortenAddress';
 
 const AccountButtonGroup = () => {
   const { theme } = useTheme();

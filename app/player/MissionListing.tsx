@@ -1,9 +1,9 @@
 'use client';
 
-import { useMissionsByAddress } from '@hooks/useMissionsByAddress';
 import { motion } from 'framer-motion';
 import { type FC } from 'react';
 
+import useMissionsByAddress from '@/hooks/useMissionsByAddress';
 import SingleTMissionCard from '@/Shared/SingleTMissionCard';
 import { LinkTextButton } from '@/UI/Button';
 import { NoFeedFound } from '@/UI/EmptyState';

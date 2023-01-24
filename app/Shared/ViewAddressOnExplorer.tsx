@@ -1,10 +1,11 @@
 'use client';
 
-import { getExplorer } from '@utils/networks';
-import { shortenTx } from '@utils/shortenAddress';
 import { type FC } from 'react';
 import { BsBoxArrowUpRight } from 'react-icons/bs';
 import { useNetwork } from 'wagmi';
+
+import { getExplorer } from '@/utils/networkConfig';
+import { shortenTx } from '@/utils/shortenAddress';
 
 type Props = {
   hash: string;

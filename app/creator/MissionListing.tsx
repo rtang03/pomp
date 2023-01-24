@@ -1,10 +1,10 @@
 'use client';
 
 import { type DocumentData, Query } from '@firebase/firestore';
-import { usePaginatedFirestore } from '@hooks/usePaginatedFirestore';
 import isEqual from 'lodash/isEqual';
 import { type FC, useState } from 'react';
 
+import usePaginatedFirestore from '@/hooks/usePaginatedFirestore';
 import MissionShimmer from '@/Shared/Shimmer/MissionShimmer';
 import type { MissionDocument } from '@/types/MissionDocument';
 import { NoFeedFound } from '@/UI/EmptyState';

@@ -1,9 +1,9 @@
 'use client';
 
-import { useIpfsMetadataQuery } from '@hooks/useIpfsMetadataQuery';
-import { type TMission } from '@hooks/useProfileMissionQuery';
 import { type FC, useState } from 'react';
 
+import useIpfsMetadataQuery from '@/hooks/useIpfsMetadataQuery';
+import { type TMission } from '@/hooks/useProfileMissionQuery';
 import { getAttributebyTraitType } from '@/types/Metadata';
 import BlurImage from '@/UI/BlurImage';
 import { LinkTextButton } from '@/UI/Button';

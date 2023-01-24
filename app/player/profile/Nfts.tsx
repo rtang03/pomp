@@ -1,12 +1,12 @@
 'use client';
 
-import { useNftsByEnumerableIndexes } from '@hooks/useProfileMissionQuery';
 import { BigNumber } from 'ethers';
 import fill from 'lodash/fill';
 import isEqual from 'lodash/isEqual';
 import { type FC } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
 
+import { useNftsByEnumerableIndexes } from '@/hooks/useProfileMissionQuery';
 import { nftContract } from '@/utils/networks';
 
 import { SingleNftByTokenId } from './SingleNft';

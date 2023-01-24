@@ -1,10 +1,10 @@
 import { getApps } from '@firebase/app';
-import { createFirebaseApp, initApp } from '@utils/firebaseClient';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import { notFound } from 'next/navigation';
 
 import { isMissionDocuments } from '@/types/MissionDocument';
+import { createFirebaseApp, initApp } from '@/utils/firebaseClient';
 
 import HomeMain from './home/Main';
 

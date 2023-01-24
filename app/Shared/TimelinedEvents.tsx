@@ -1,9 +1,9 @@
 'use client';
 
-import { type ParsedEvent, useContractEvents } from '@hooks/useContractEvents';
-import { useMissionByIds } from '@hooks/useProfileMissionQuery';
 import { type FC } from 'react';
 
+import { type ParsedEvent, useContractEvents } from '@/hooks/useContractEvents';
+import { useMissionByIds } from '@/hooks/useProfileMissionQuery';
 import { LinkTextButton } from '@/UI/Button';
 import { NoFeedFound } from '@/UI/EmptyState';
 import Loader from '@/UI/Loader';

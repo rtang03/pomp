@@ -2,13 +2,13 @@
 
 import { useAppContext } from '@components/AppContext';
 import { type TransactionReceipt } from '@ethersproject/abstract-provider';
-import { usePompPrepareWrite } from '@hooks/usePompOrNFTContract';
-import { type TAddress, useHasRoleQuery, useRoleHashQuery } from '@hooks/useProfileMissionQuery';
 import { Form, Formik } from 'formik';
 import { type FC, useRef, useState } from 'react';
 import { useAccount, useContractWrite } from 'wagmi';
 import * as Yup from 'yup';
 
+import usePompPrepareWrite from '@/hooks/usePompOrNFTContract';
+import { type TAddress, useHasRoleQuery, useRoleHashQuery } from '@/hooks/useProfileMissionQuery';
 import Input from '@/UI/Input';
 import LoadingDots from '@/UI/LoadingDots';
 import SaveButton from '@/UI/SaveButton';

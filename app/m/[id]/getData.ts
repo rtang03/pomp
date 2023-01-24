@@ -1,7 +1,8 @@
 import { getApps } from '@firebase/app';
-import { createFirebaseApp, initApp } from '@utils/firebaseClient';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+
+import { createFirebaseApp, initApp } from '@/utils/firebaseClient';
 
 const EMAIL = process.env.FIREBASE_ADMIN_EMAIL;
 const PASSWORD = process.env.FIREBASE_ADMIN_PASSWORD;

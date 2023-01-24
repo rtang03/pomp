@@ -2,15 +2,15 @@
 
 import { useAppContext } from '@components/AppContext';
 import { collection, Firestore, orderBy, query, where } from '@firebase/firestore';
-import { useCanClaim } from '@hooks/useCanClaim';
-import { usePaginatedFirestore } from '@hooks/usePaginatedFirestore';
-import { useProfileByAddress } from '@hooks/useProfileMissionQuery';
 import { motion } from 'framer-motion';
 import isEqual from 'lodash/isEqual';
 import Link from 'next/link';
 import { type FC, ReactNode, useState } from 'react';
 import { useAccount } from 'wagmi';
 
+import useCanClaim from '@/hooks/useCanClaim';
+import usePaginatedFirestore from '@/hooks/usePaginatedFirestore';
+import { useProfileByAddress } from '@/hooks/useProfileMissionQuery';
 import { type MissionDocument } from '@/types/MissionDocument';
 import BigSquareBox from '@/UI/BigSquareBox';
 import { SmallBackButton } from '@/UI/Button';

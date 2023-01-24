@@ -16,7 +16,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@/abi*": ["app/abi*"],
       "@/UI*": ["app/UI*"],
+      "@/hooks*": ["app/hooks*"],
       "@/Shared*": ["app/Shared*"],
       "@/types*": ["app/types*"],
       "@/utils*": ["app/utils*"],

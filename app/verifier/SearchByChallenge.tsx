@@ -1,11 +1,11 @@
 'use client';
 
-import { useMissionByChallenge } from '@hooks/useProfileMissionQuery';
 import { Form, Formik } from 'formik';
 import { motion } from 'framer-motion';
 import { type FC, useState } from 'react';
 import * as Yup from 'yup';
 
+import { useMissionByChallenge } from '@/hooks/useProfileMissionQuery';
 import ChallengeInputField from '@/Shared/ChallengeInputField';
 import SingleTMissionCard from '@/Shared/SingleTMissionCard';
 import { NoFeedFound } from '@/UI/EmptyState';
