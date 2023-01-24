@@ -1,8 +1,9 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { doc, DocumentReference, FirestoreError } from '@firebase/firestore';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
+
+import useAppContext from '@/Shared/AppContext';
 
 const useTypedDocument: <TDocument = any>(
   path: string,

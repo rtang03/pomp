@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { BigNumber } from 'ethers';
 import isEqual from 'lodash/isEqual';
 import toast from 'react-hot-toast';
@@ -11,6 +10,7 @@ import {
   useContractReads
 } from 'wagmi';
 
+import useAppContext from '@/Shared/AppContext';
 import type { MissionStruct, ProfileStruct } from '@/types/PompContractStruct';
 import { elog, log } from '@/utils/consoleLog';
 import { ZERO_ADDRESS } from '@/utils/constants';

@@ -17,7 +17,7 @@ export const Button: FC<Props> = ({ disabled, children, className, handleClick }
       onClick={handleClick}
       whileTap={{ scale: 0.98 }}
       type="button"
-      className={`w-32 border-2 border-gray-500 p-2 hover:border-black ${className}`}
+      className={`w-32 border-2 border-gray-500 p-2 hover:border-black ${className} dark:hover:border-white`}
     >
       {children}
     </motion.button>

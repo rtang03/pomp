@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { deleteDoc, doc, setDoc } from '@firebase/firestore';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -8,6 +7,7 @@ import { type FC, useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsArchive, BsTrash } from 'react-icons/bs';
 
+import useAppContext from '@/Shared/AppContext';
 import type { MissionDocument } from '@/types/MissionDocument';
 import BlurImage from '@/UI/BlurImage';
 import { Card } from '@/UI/Card';

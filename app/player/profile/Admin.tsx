@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { type TransactionReceipt } from '@ethersproject/abstract-provider';
 import { Form, Formik } from 'formik';
 import { type FC, useRef, useState } from 'react';
@@ -9,6 +8,7 @@ import * as Yup from 'yup';
 
 import usePompPrepareWrite from '@/hooks/usePompOrNFTContract';
 import { type TAddress, useHasRoleQuery, useRoleHashQuery } from '@/hooks/useProfileMissionQuery';
+import useAppContext from '@/Shared/AppContext';
 import Input from '@/UI/Input';
 import LoadingDots from '@/UI/LoadingDots';
 import SaveButton from '@/UI/SaveButton';

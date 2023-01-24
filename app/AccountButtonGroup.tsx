@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { logEvent } from '@firebase/analytics';
 import {
   browserSessionPersistence,
@@ -25,6 +24,7 @@ import {
   useSignMessage
 } from 'wagmi';
 
+import useAppContext from '@/Shared/AppContext';
 import BigSquareBox from '@/UI/BigSquareBox';
 import { Button } from '@/UI/Button';
 import LoadingDots from '@/UI/LoadingDots';
@@ -122,7 +122,7 @@ const AccountButtonGroup = () => {
       <ToggleThemeButton theme={theme as string} />
       <div className="flex-col">
         <Button
-          className="bg-white text-sm dark:bg-gray-500 md:text-base"
+          className="bg-white text-sm dark:bg-transparent dark:text-white md:text-base"
           disabled={isAuthenticating || !auth || loggedIn}
           handleClick={() => setShowModal(true)}
         >

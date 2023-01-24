@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { collection, Firestore, orderBy, query, where } from '@firebase/firestore';
 import { motion } from 'framer-motion';
 import isEqual from 'lodash/isEqual';
@@ -11,6 +10,7 @@ import { useAccount } from 'wagmi';
 import useCanClaim from '@/hooks/useCanClaim';
 import usePaginatedFirestore from '@/hooks/usePaginatedFirestore';
 import { useProfileByAddress } from '@/hooks/useProfileMissionQuery';
+import useAppContext from '@/Shared/AppContext';
 import { type MissionDocument } from '@/types/MissionDocument';
 import BigSquareBox from '@/UI/BigSquareBox';
 import { SmallBackButton } from '@/UI/Button';

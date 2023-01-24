@@ -39,4 +39,6 @@ export const AppContext = createContext<TContext>({
   isValidWalletAccount: false
 });
 
-export const useAppContext = () => useContext(AppContext);
+const useAppContext = () => useContext(AppContext);
+
+export default useAppContext;

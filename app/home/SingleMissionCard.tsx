@@ -21,9 +21,9 @@ const SingleMissionCard: FC<Props> = ({ mission: m }) => {
     <Card className="w-full md:p-5">
       <div className="block justify-between space-y-2 md:flex md:space-x-5">
         <div className="block overflow-hidden md:flex md:space-x-5">
-          <div className="w-full md:w-32">
+          <div className="">
             {m.image ? (
-              <div className="relative h-[150px] w-[150px]">
+              <div className="relative h-32 w-32">
                 <BlurImage
                   alt={m.title ?? 'Unknown Thumbnail'}
                   src={m.image}

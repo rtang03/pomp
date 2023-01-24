@@ -1,11 +1,11 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import type { TransactionReceipt } from '@ethersproject/abstract-provider';
 import { useState } from 'react';
 import { useAccount, useContractWrite, useNetwork, useSignTypedData } from 'wagmi';
 
 import usePompPrepareWrite from '@/hooks/usePompOrNFTContract';
+import useAppContext from '@/Shared/AppContext';
 
 const useCommon = (
   functionName:

@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { type TransactionReceipt } from '@ethersproject/abstract-provider';
 import Custom404 from '@pages/404';
 import { Form, Formik } from 'formik';
@@ -13,6 +12,7 @@ import useCanClaim from '@/hooks/useCanClaim';
 import useDebounce from '@/hooks/useDebounce';
 import usePompPrepareWrite from '@/hooks/usePompOrNFTContract';
 import { useProfileIdByHandleQuery, useProfileQuery } from '@/hooks/useProfileMissionQuery';
+import useAppContext from '@/Shared/AppContext';
 import Input from '@/UI/Input';
 import Loader from '@/UI/Loader';
 import LoadingDots from '@/UI/LoadingDots';

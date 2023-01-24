@@ -2,7 +2,6 @@
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { useAppContext } from '@components/AppContext';
 import { logEvent } from '@firebase/analytics';
 import { doc, setDoc } from '@firebase/firestore';
 import Custom404 from '@pages/404';
@@ -13,6 +12,7 @@ import DatePicker from 'react-datepicker';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import useTypedDocument from '@/hooks/useTypedDocument';
+import useAppContext from '@/Shared/AppContext';
 import AttachmentsChooseFile from '@/Shared/AttachmentsChooseFile';
 import ContentMarkdown from '@/Shared/ContentMarkdown';
 import type { MissionData } from '@/types/MissionData';

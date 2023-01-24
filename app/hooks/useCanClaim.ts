@@ -1,10 +1,10 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 
 import { type TAddress, useClaimableByAddress } from '@/hooks/useProfileMissionQuery';
+import useAppContext from '@/Shared/AppContext';
 
 const useCanClaim = () => {
   const { isAuthenticated, isValidWalletAccount } = useAppContext();

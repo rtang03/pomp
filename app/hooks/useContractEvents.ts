@@ -1,11 +1,11 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { ethers, utils } from 'ethers';
 import { useEffect, useState } from 'react';
 import missionABI from 'smart-contract/abi/contracts/MissionModule.sol/MissionModule.json';
 import { useAccount, useSigner } from 'wagmi';
 
+import useAppContext from '@/Shared/AppContext';
 import { elog } from '@/utils/consoleLog';
 import { MISSION_MODULE_ADDRESS } from '@/utils/networks';
 

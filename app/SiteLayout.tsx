@@ -1,6 +1,5 @@
 'use client';
 
-import { AppContext } from '@components/AppContext';
 import { onAuthStateChanged, User } from '@firebase/auth';
 import { doc, getDoc, setDoc } from '@firebase/firestore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -14,6 +13,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
+import { AppContext } from '@/Shared/AppContext';
 import { UserProfile } from '@/types/UserProfile';
 import { elog } from '@/utils/consoleLog';
 import { supportedChainIds } from '@/utils/constants';

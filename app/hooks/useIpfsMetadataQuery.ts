@@ -1,9 +1,9 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
-import { isMetadata, Metadata } from '@/types/Metadata';
+import useAppContext from '@/Shared/AppContext';
+import { type Metadata, isMetadata } from '@/types/Metadata';
 import { elog, log } from '@/utils/consoleLog';
 
 const LABEL = '[useIpfsMetadataQuery]';

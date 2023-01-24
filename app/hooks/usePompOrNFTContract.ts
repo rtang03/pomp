@@ -1,9 +1,9 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { BigNumber } from 'ethers';
 import { usePrepareContractWrite } from 'wagmi';
 
+import useAppContext from '@/Shared/AppContext';
 import { elog, log } from '@/utils/consoleLog';
 import { pompContract } from '@/utils/networks';
 
