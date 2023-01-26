@@ -1,6 +1,5 @@
-import { abi as nftABI } from 'src/abi/MissionNFT';
-import { abi as pompABI } from 'src/abi/PompHub';
-
+import { abi as nftABI } from '@/abi/MissionNFT';
+import { abi as pompABI } from '@/abi/PompHub';
 import {
   MISS_MODULE_ADDRESS_GOERLI,
   MISS_MODULE_ADDRESS_LOCAL,

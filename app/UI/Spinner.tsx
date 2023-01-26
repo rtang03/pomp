@@ -1,3 +1,5 @@
+'use client';
+
 import { type ComponentProps, forwardRef } from 'react';
 
 interface Props extends ComponentProps<'div'> {

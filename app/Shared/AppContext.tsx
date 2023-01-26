@@ -1,5 +1,3 @@
-'use client';
-
 import type { Analytics } from '@firebase/analytics';
 import type { FirebaseApp } from '@firebase/app';
 import type { Auth, User } from '@firebase/auth';

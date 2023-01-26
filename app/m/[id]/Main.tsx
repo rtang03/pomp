@@ -1,17 +1,19 @@
 'use client';
 
-import { useAppContext } from '@components/AppContext';
 import { logEvent } from '@firebase/analytics';
 import Custom404 from '@pages/404';
 import { motion } from 'framer-motion';
 import { type FC, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
+import useAppContext from '@/Shared/AppContext';
 import ContentMarkdown from '@/Shared/ContentMarkdown';
-import { isMissionDocument } from '@/types/MissionDocument';
+import { type MissionDocument, isMissionDocument } from '@/types/MissionDocument';
 import BlurImage from '@/UI/BlurImage';
 import { ModalWithConnectWalletMessage } from '@/UI/ConnectWalletMessage';
 import { elog } from '@/utils/consoleLog';
+
+import Start from './Start';
 
 export const formatDate = (_updatedAt: Date) =>
   `Published at ${Intl.DateTimeFormat('en', { month: 'short' }).format(
@@ -19,7 +21,7 @@ export const formatDate = (_updatedAt: Date) =>
   )} ${Intl.DateTimeFormat('en', { day: '2-digit' }).format(new Date(_updatedAt))}`;
 
 const MissionMain: FC<{ stringifiedData: string }> = ({ stringifiedData }) => {
-  const { isAuthenticated, analytics } = useAppContext();
+  const { isAuthenticated, analytics, user } = useAppContext();
   const [showStartMission, setShowStartMission] = useState<boolean>(false);
   const [showConnectWalletModal, setShowConnectWalletModal] = useState<boolean>(false);
 
@@ -36,7 +38,7 @@ const MissionMain: FC<{ stringifiedData: string }> = ({ stringifiedData }) => {
     return (
       <>
         {showStartMission ? (
-          <div />
+          <Start setShow={setShowStartMission} missionDoc={m as Required<MissionDocument>} />
         ) : (
           <div className="flex flex-col items-center justify-center">
             <div

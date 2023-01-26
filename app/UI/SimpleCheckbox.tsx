@@ -1,3 +1,5 @@
+'use client';
+
 import { type ComponentProps, type ReactNode, forwardRef } from 'react';
 
 type Props = {

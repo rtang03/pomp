@@ -1,3 +1,5 @@
+'use client';
+
 import { type FC, ReactNode } from 'react';
 
 export const AnimatedPing: FC<{ off?: boolean; color?: 'violet' | 'red'; children: ReactNode }> = ({

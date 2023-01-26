@@ -1,28 +1,18 @@
-import { getApps } from '@firebase/app';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import { notFound } from 'next/navigation';
+import { cache } from 'react';
 
 import { isMissionDocuments } from '@/types/MissionDocument';
-import { createFirebaseApp, initApp } from '@/utils/firebaseClient';
+import { getFirebase } from '@/utils/firebase';
 
 import HomeMain from './home/Main';
 
-const EMAIL = process.env.FIREBASE_ADMIN_EMAIL;
-const PASSWORD = process.env.FIREBASE_ADMIN_PASSWORD;
+export const revalidate = 60;
 
-const getData = async () => {
-  const _apps = getApps();
-  const app = _apps.length > 0 ? initApp(_apps[0]) : createFirebaseApp();
-
-  if (!app?.db || !app?.auth) throw new Error('Firebase not ready');
-  if (!EMAIL || !PASSWORD) throw new Error('Invalid email / password');
-
-  const user = await signInWithEmailAndPassword(app.auth, EMAIL, PASSWORD);
-  if (!user) throw new Error(`failed to signInWithEmailAndPassword`);
-
+const getData = cache(async () => {
+  const { db } = await getFirebase();
   const q = query(
-    collection(app.db, 'mission'),
+    collection(db, 'mission'),
     orderBy('updatedAt', 'desc'),
     limit(5),
     where('status', '==', 'Published')
@@ -34,13 +24,17 @@ const getData = async () => {
     if (isMissionDocuments(data)) return data;
     else return null;
   } else return [];
-};
+});
 
 const IndexPage = async () => {
   const data = await getData();
   data === null && notFound();
 
-  return <HomeMain stringifiedData={JSON.stringify(data)} />;
+  return (
+    <div className="page-layout">
+      <HomeMain stringifiedData={JSON.stringify(data)} />
+    </div>
+  );
 };
 
 export default IndexPage;

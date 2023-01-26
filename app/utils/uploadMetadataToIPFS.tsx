@@ -1,6 +1,5 @@
 'use client';
 
-import { type Options, create } from 'ipfs-http-client';
 import { nanoid } from 'nanoid';
 
 import type { Metadata } from '@/types/Metadata';
@@ -17,19 +16,21 @@ export const uploadMetadataToIPFS: (data: Metadata) => Promise<{ ipfsUrl: string
     metadata_id: nanoid(),
     version: '1.0.0'
   };
-  const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
-  const option: Options = {
-    host: 'ipfs.infura.io',
-    port: 5001,
-    protocol: 'https',
-    headers: { authorization: auth }
+
+  const option: RequestInit = {
+    method: 'POST',
+    body: JSON.stringify(metadata),
+    headers: {
+      authorization: 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
+    }
   };
-  const client = create(option);
 
   try {
-    const cid = await client.add(JSON.stringify(metadata));
+    const cid = await fetch('https://ipfs.infura.io:5001/api/v0/add', option)
+      .then((res) => res.json())
+      .then((json) => json?.Hash);
 
-    if (cid?.path) return { ipfsUrl: `ipfs://${cid.path}` };
+    if (cid) return { ipfsUrl: `ipfs://${cid}` };
     else elog('[utils/uploadMetaToIPFS] IPFS-client', 'unknown ipfs-add error');
   } catch (error) {
     elog('[utils/uploadMetaToIPFS] IPFS-client', error);

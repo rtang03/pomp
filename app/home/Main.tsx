@@ -4,7 +4,7 @@ import { collection, Firestore, orderBy, query, where } from '@firebase/firestor
 import { motion } from 'framer-motion';
 import isEqual from 'lodash/isEqual';
 import Link from 'next/link';
-import { type FC, ReactNode, useState } from 'react';
+import { type FC, type ReactNode, useState } from 'react';
 import { useAccount } from 'wagmi';
 
 import useCanClaim from '@/hooks/useCanClaim';
@@ -96,7 +96,7 @@ const HomeMain: FC<{
   const { isCreator, isVerifier } = useProfileByAddress(address, !address || !isAuthenticated);
 
   return (
-    <>
+    <div className="space-y-10">
       {isAuthenticated && isRoothashOutOfSync && (
         <div className="container items-center justify-start">
           The roothash is out-of-sync. Please contact administrator.
@@ -190,7 +190,7 @@ const HomeMain: FC<{
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
