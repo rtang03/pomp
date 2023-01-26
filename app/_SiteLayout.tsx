@@ -4,7 +4,7 @@ import { onAuthStateChanged, User } from '@firebase/auth';
 import { doc, getDoc, setDoc } from '@firebase/firestore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useTheme } from 'next-themes';
+import { ThemeProvider, useTheme } from 'next-themes';
 import { type FC, type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAccount, useNetwork } from 'wagmi';
@@ -14,6 +14,46 @@ import { UserProfile } from '@/types/UserProfile';
 import { elog } from '@/utils/consoleLog';
 import { supportedChainIds } from '@/utils/constants';
 import { createFirebaseApp, FirebaseService } from '@/utils/firebaseClient';
+
+// see https://github.com/pacocoursey/next-themes/issues/152
+
+// const IS_LOCALHOST = process.env.NEXT_PUBLIC_IS_LOCALHOST === 'true';
+// const ALCHEMY_API_KEY =
+//   process.env.NEXT_PUBLIC_DEFAULT_NETWORK === 'mumbai'
+//     ? process.env.NEXT_PUBLIC_ALCHEMY_MUMBAI
+//     : process.env.NEXT_PUBLIC_ALCHEMY_GOERLI;
+
+// const { chains, provider, webSocketProvider } = configureChains(
+//   IS_LOCALHOST
+//     ? [chain.localhost]
+//     : [
+//         chain.polygon,
+//         chain.polygonMumbai,
+//         chain.mainnet,
+//         // chain.hardhat,
+//         chain.goerli
+//       ],
+//   IS_LOCALHOST
+//     ? [
+//         jsonRpcProvider({
+//           rpc: (chain) => ({
+//             http: `http://localhost:8545`
+//           }),
+//           priority: 2
+//         })
+//       ]
+//     : [alchemyProvider({ priority: 1, apiKey: ALCHEMY_API_KEY })]
+// );
+
+// const client = createClient({
+//   provider,
+//   webSocketProvider,
+//   autoConnect: true,
+//   connectors: [
+//     new MetaMaskConnector({ chains }),
+//     new WalletConnectConnector({ chains, options: { qrcode: true } })
+//   ]
+// });
 
 const queryClient = new QueryClient();
 
@@ -43,7 +83,7 @@ const SiteLayout: FC<{ nav: ReactNode; children: ReactNode }> = ({ nav, children
   const [dev, setDev] = useState<boolean>(process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production');
   const [app, setApp] = useState<FirebaseService | null>();
   const isMounted = useRef<boolean>(false);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAuthenticating, setIsAuthenticating] = useState<boolean>(false);
@@ -52,12 +92,16 @@ const SiteLayout: FC<{ nav: ReactNode; children: ReactNode }> = ({ nav, children
   const { chain } = useNetwork();
 
   useEffect(() => {
+    console.log('setIsValidWalletAccount');
+
     chain?.id &&
       user?.displayName &&
       setIsValidWalletAccount(supportedChainIds.includes(chain.id) && user.displayName === address);
   }, [address, chain?.id, user?.displayName]);
 
   useEffect(() => {
+    console.log('createFirebaseApp', !!app);
+
     if (!app && !isMounted.current) {
       const _app = createFirebaseApp();
       _app && setApp(_app);
@@ -135,17 +179,21 @@ const SiteLayout: FC<{ nav: ReactNode; children: ReactNode }> = ({ nav, children
     }
   }, [app?.db, user?.displayName, user?.uid]);
 
-  const toastOptions = getToastOptions(theme);
+  const toastOptions = getToastOptions(resolvedTheme);
 
   return (
-    <AppContext.Provider value={value}>
-      {nav}
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <Toaster position="bottom-right" toastOptions={toastOptions} />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </AppContext.Provider>
+    <ThemeProvider attribute="class" enableSystem={false}>
+      <AppContext.Provider value={value}>
+        {/*<WagmiConfig client={getClient()}>*/}
+        {nav}
+        <QueryClientProvider client={queryClient}>
+          {children}
+          <Toaster position="bottom-right" toastOptions={toastOptions} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+        {/*</WagmiConfig>*/}
+      </AppContext.Provider>
+    </ThemeProvider>
   );
 };
 

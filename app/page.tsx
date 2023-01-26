@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
 import { isMissionDocuments } from '@/types/MissionDocument';
-import { getFirebase } from '@/utils/firebase';
+import { getFirebase } from '@/utils/getFirebase';
 
 import HomeMain from './home/Main';
 

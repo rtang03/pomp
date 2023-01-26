@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { isMissionDocument } from '@/types/MissionDocument';
 import type { GenerateStaticParams } from '@/types/next';
-import { getFirebase } from '@/utils/firebase';
+import { getFirebase } from '@/utils/getFirebase';
 
 import { getData } from './getData';
 import Main from './Main';

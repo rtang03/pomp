@@ -1,11 +1,12 @@
 'use client';
 
-import { SingleNftByTokenUri } from '@components/Profile/SingleNft';
 import Custom404 from '@pages/404';
 import { type FC } from 'react';
 
 import { type MissionStruct, isProfileStruct } from '@/types/PompContractStruct';
 import { elog } from '@/utils/consoleLog';
+
+import { SingleNftByTokenUri } from './SingleNft';
 
 const AchievementMain: FC<{ stringifiedData: string }> = ({ stringifiedData }) => {
   let m;

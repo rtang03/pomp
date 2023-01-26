@@ -14,13 +14,23 @@ const ToggleThemeButton: FC<{ theme: string }> = ({ theme }) => {
   const { setTheme } = useTheme();
 
   const Button1 = () => (
-    <button onClick={() => setTheme('light')}>
+    <button
+      onClick={() => {
+        console.log('button1');
+        setTheme('light');
+      }}
+    >
       <MdOutlineDarkMode className="text-2xl" />
     </button>
   );
 
   const Button2 = () => (
-    <button onClick={() => setTheme('dark')}>
+    <button
+      onClick={() => {
+        console.log('button2');
+        setTheme('dark');
+      }}
+    >
       <BsSun className="text-2xl" />
     </button>
   );

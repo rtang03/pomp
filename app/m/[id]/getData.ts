@@ -3,7 +3,7 @@ import 'server-only';
 import { doc, getDoc } from 'firebase/firestore';
 import { cache } from 'react';
 
-import { getFirebase } from '@/utils/firebase';
+import { getFirebase } from '@/utils/getFirebase';
 
 export const getData = cache(async (id: string) => {
   const { db } = await getFirebase();

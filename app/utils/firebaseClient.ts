@@ -35,8 +35,10 @@ export const createFirebaseApp: () => FirebaseService | null = () => {
     const db = getFirestore(app);
 
     return { app, functions, auth, db, analytics };
+  } else {
+    const app = getApps()[0];
+    return { app, functions: getFunctions(app), ...initApp(app) };
   }
-  return null;
 };
 
 export const initApp = (_app: FirebaseApp) => ({
