@@ -33,7 +33,7 @@ const WarningMessage: FC<Props> = ({ title, isFYI, showDismiss, message, classNa
                   isFYI
                     ? 'text-blue-800 dark:text-blue-500'
                     : 'text-yellow-800 dark:text-yellow-200'
-                } text-sm font-medium`}
+                } font-sans text-sm`}
               >
                 {title}
               </h3>

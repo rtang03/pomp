@@ -12,9 +12,9 @@ import SiteLayout from './SiteLayout';
 
 // see https://github.com/pacocoursey/next-themes/issues/152
 
-const AppProviders: FC<{ nav: ReactNode; children: ReactNode }> = ({ nav, children }) => {
+const AppProviders: FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <ThemeProvider attribute="class" enableSystem={true}>
+    <ThemeProvider attribute="class" enableSystem={false}>
       <WagmiConfig client={getClient()}>
         <SiteLayout
           nav={

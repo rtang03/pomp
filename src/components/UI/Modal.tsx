@@ -48,7 +48,7 @@ const Modal: FC<Props> = ({ icon, title, isOpen, handleClose, children }) => {
                 <div className="flex-1 justify-start">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200"
+                    className="font-sans text-lg leading-6 text-gray-900 dark:text-gray-200"
                   >
                     <div className="flex items-center space-x-3">
                       {icon && <div className="">{icon}</div>}

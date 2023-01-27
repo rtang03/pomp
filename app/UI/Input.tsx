@@ -21,7 +21,7 @@ const Input = forwardRef<HTMLInputElement, Props>(function Input(
   return (
     <label className="w-full">
       {label && (
-        <div className="mb-1 flex font-medium text-gray-800 dark:text-gray-200">
+        <div className="mb-1 flex font-sans text-gray-800 dark:text-gray-200">
           <div className="mr-4">{label}</div>
         </div>
       )}

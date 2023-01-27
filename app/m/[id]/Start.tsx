@@ -106,6 +106,8 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
     !verifierRef.current || verifierRef.current?.length !== ADDRESS_LENGTH || !roleHash
   );
 
+  const isExpired = m.enddate.seconds * 1000 < Date.now();
+
   return (
     <>
       <div className="flex justify-center border-b border-gray-500/50"></div>
@@ -353,6 +355,7 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                         isSubmitting ||
                         status === STATUS.OK ||
                         status === STATUS.ERR ||
+                        isExpired ||
                         !isValidWalletAccount
                       }
                       text={
@@ -363,6 +366,8 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                             'Error'
                           ) : status === STATUS.OK ? (
                             'Done'
+                          ) : isExpired ? (
+                            'Expired'
                           ) : (
                             'Confirm'
                           )}
@@ -375,6 +380,7 @@ const Start: FC<Props> = ({ missionDoc: m, setShow }) => {
                       }}
                     />
                     {status && <div>status: {status}</div>}
+                    {isExpired && <div>This mission is expired. Cannot proceed.</div>}
                     {txHash && chain && chain.id !== LOCAL_CHAINID && (
                       <div className="my-10 flex items-center space-x-2">
                         <div>View Transaction</div>

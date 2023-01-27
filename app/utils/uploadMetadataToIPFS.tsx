@@ -17,9 +17,11 @@ export const uploadMetadataToIPFS: (data: Metadata) => Promise<{ ipfsUrl: string
     version: '1.0.0'
   };
 
+  const formData = new FormData();
+  formData.append('file', JSON.stringify(metadata));
   const option: RequestInit = {
     method: 'POST',
-    body: JSON.stringify(metadata),
+    body: formData,
     headers: {
       authorization: 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
     }

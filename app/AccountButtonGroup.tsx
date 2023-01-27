@@ -29,7 +29,7 @@ import BigSquareBox from '@/UI/BigSquareBox';
 import { Button } from '@/UI/Button';
 import LoadingDots from '@/UI/LoadingDots';
 import Modal from '@/UI/Modal';
-import ToggleThemeButton from '@/UI/ToggleThemeButton';
+// import ToggleThemeButton from '@/UI/ToggleThemeButton';
 import { elog } from '@/utils/consoleLog';
 import { shortenAddress } from '@/utils/shortenAddress';
 
@@ -119,7 +119,7 @@ const AccountButtonGroup = () => {
 
   return (
     <>
-      <ToggleThemeButton theme={theme as string} />
+      {/*<ToggleThemeButton theme={theme as string} />*/}
       <div className="flex-col">
         <Button
           className="bg-white text-sm dark:bg-transparent dark:text-white md:text-base"

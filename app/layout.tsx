@@ -17,7 +17,7 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
         </head>
         <body>
           <main className={`${inter.variable} font-sans`}>
-            <AppProviders nav={<></>}>{children}</AppProviders>
+            <AppProviders>{children}</AppProviders>
           </main>
         </body>
       </html>
