@@ -7,7 +7,18 @@ export const getConnectors = () => {
   const baseConnectors = [
     {
       title: 'Metamask',
-      icon: <Image src={'/metamask.svg'} alt={'metamask'} height={50} width={50} />,
+      icon: (
+        <Image
+          src={'/metamask.svg'}
+          alt={'metamask'}
+          height={50}
+          width={50}
+          style={{
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
+      ),
       connectorId: 'injected',
       priority: 1,
       connector: new MetaMaskConnector()
@@ -15,7 +26,16 @@ export const getConnectors = () => {
     {
       title: 'WalletConnect',
       icon: (
-        <Image src={'/walletconnect-square-white.svg'} alt={'metamask'} height={50} width={50} />
+        <Image
+          src={'/walletconnect-square-white.svg'}
+          alt={'metamask'}
+          height={50}
+          width={50}
+          style={{
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
       ),
       connectorId: 'walletconnect',
       priority: 2,

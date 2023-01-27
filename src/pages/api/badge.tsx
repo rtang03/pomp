@@ -1,9 +1,7 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
 
-export const config = {
-  runtime: 'experimental-edge'
-};
+export const config = { runtime: 'edge' };
 
 const trimify = (value: string): string => value?.replace(/\n\s*\n/g, '\n\n').trim();
 const MESSAGE = 'Mission Achieved';

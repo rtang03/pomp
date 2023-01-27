@@ -1,6 +1,17 @@
 module.exports = {
+  experimental: {
+    appDir: true
+  },
   reactStrictMode: true,
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'madseed.infura-ipfs.io',
+        port: '',
+        pathname: '/ipfs/**'
+      }
+    ],
     domains: [
       'ipfs.infura.io',
       'avatar.tobi.sh',

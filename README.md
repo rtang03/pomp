@@ -36,6 +36,7 @@ There are two areas, (1) business functions, and (2) technical implementation, f
 - Escrow missionNFT during the mission journey
 - Start / Abort / Complete / Verify / Fail mission
 - Batch verify
+- Multi tenant support
 
 Not Considered for now 
 
@@ -81,3 +82,5 @@ Source code in this repo comes from below material.
 - https://vercel.com/docs/concepts/functions/edge-functions/og-image-examples
 - https://github.com/vercel/examples/blob/main/edge-functions/vercel-og-nextjs/pages/index.tsx
 - https://github.com/dievardump/EIP2981-implementation
+- https://github.com/WITS/next-themes#avoid-hydration-mismatch
+- https://github.com/garmeeh/next-seo/blob/master/APP_DIRECTORY.md

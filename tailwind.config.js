@@ -1,10 +1,11 @@
 const lineClamp = require('@tailwindcss/line-clamp');
 const typography = require('@tailwindcss/typography');
 const forms = require('@tailwindcss/forms');
+const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   enabled: true,
   darkMode: 'class',
   variants: {},
@@ -26,7 +27,7 @@ module.exports = {
         88: '22rem'
       },
       fontFamily: {
-        cal: ['Cal Sans', 'Inter var', 'sans-serif']
+        sans: ['var(--font-inter)', ...fontFamily.sans]
       },
       container: {
         center: true,

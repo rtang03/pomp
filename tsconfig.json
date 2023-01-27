@@ -16,6 +16,12 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@/abi*": ["app/abi*"],
+      "@/UI*": ["app/UI*"],
+      "@/hooks*": ["app/hooks*"],
+      "@/Shared*": ["app/Shared*"],
+      "@/types*": ["app/types*"],
+      "@/utils*": ["app/utils*"],
       "@components*": ["src/components*"],
       "@abis*": ["src/abis*"],
       "@utils*": ["src/utils*"],
@@ -24,7 +30,12 @@
       "@hooks*": ["src/hooks*"],
       "@pages*": ["src/pages*"]
     },
-    "types": ["mocha"]
+    "types": ["mocha"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "ts-node": {
     // these options are overrides used only by ts-node
@@ -32,6 +43,6 @@
       "module": "commonjs"
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "./smart-contract"]
 }

@@ -13,7 +13,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'error',
     '@next/next/no-html-link-for-pages': ['off', '/api/'],
-    '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@next/next/no-img-element': 'off',
     'simple-import-sort/imports': 'error',
