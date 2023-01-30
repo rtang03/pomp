@@ -50,7 +50,7 @@ const AddRole: FC<{
     isLoading: grantOrRevokeRoleLoading,
     isSuccess,
     reset
-  } = useContractWrite(config);
+  } = useContractWrite({ ...config, mode: 'recklesslyUnprepared' });
 
   return (
     <Formik

@@ -20,7 +20,7 @@ const IS_LOCALHOST =
 export const POMP_ADDRESS = IS_LOCALHOST ? POMP_ADDRESS_LOCAL : defaultNetworkForPomp;
 
 export const pompContract = {
-  address: POMP_ADDRESS,
+  address: POMP_ADDRESS as `0x${string}`,
   abi: pompABI
 };
 
@@ -30,7 +30,7 @@ const defaultNetworkForNft =
     : MISSIONNFT_ADDRESS_GOERLI;
 
 export const nftContract = {
-  address: IS_LOCALHOST ? MISSIONNFT_ADDRESS_LOCAL : defaultNetworkForNft,
+  address: (IS_LOCALHOST ? MISSIONNFT_ADDRESS_LOCAL : defaultNetworkForNft) as `0x${string}`,
   abi: nftABI
 };
 
