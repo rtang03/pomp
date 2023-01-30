@@ -84,3 +84,6 @@ Source code in this repo comes from below material.
 - https://github.com/dievardump/EIP2981-implementation
 - https://github.com/WITS/next-themes#avoid-hydration-mismatch
 - https://github.com/garmeeh/next-seo/blob/master/APP_DIRECTORY.md
+
+Note:
+lokijs and pino-pretty are dependency required by @wallet connect

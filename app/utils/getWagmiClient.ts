@@ -1,6 +1,7 @@
 'use client';
 
-import { chain, configureChains, createClient } from 'wagmi';
+import { goerli, mainnet, polygon, polygonMumbai } from '@wagmi/core/chains';
+import { configureChains, createClient } from 'wagmi';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
@@ -18,13 +19,13 @@ export const getClient = () => {
   if (!client) {
     const { chains, provider, webSocketProvider } = configureChains(
       IS_LOCALHOST
-        ? [chain.localhost]
+        ? ['31337' as any]
         : [
-            chain.polygon,
-            chain.polygonMumbai,
-            chain.mainnet,
+            polygon,
+            polygonMumbai,
+            mainnet,
             // chain.hardhat,
-            chain.goerli
+            goerli
           ],
       IS_LOCALHOST
         ? [
@@ -35,7 +36,7 @@ export const getClient = () => {
               priority: 2
             })
           ]
-        : [alchemyProvider({ priority: 1, apiKey: ALCHEMY_API_KEY })]
+        : [alchemyProvider({ priority: 1, apiKey: ALCHEMY_API_KEY as string })]
     );
     client = createClient({
       provider,

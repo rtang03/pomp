@@ -19,7 +19,6 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'jsx-a11y/role-supports-aria-props': 'off',
-    'tailwindcss/classnames-order': 'error',
     'tailwindcss/no-custom-classname': 'off'
   },
   ignorePatterns: ['/src/generated/types.d.ts', 'functions/lib/**/*']

@@ -21,7 +21,10 @@ export const useCommon = (
   const [txHash, setTxHash] = useState<string>();
   const { signTypedDataAsync, reset: signTypedDataAsynReset } = useSignTypedData();
   const { config } = usePompPrepareWrite(functionName, args, false);
-  const { writeAsync, reset: writeAsyncReset } = useContractWrite(config);
+  const { writeAsync, reset: writeAsyncReset } = useContractWrite({
+    ...config,
+    mode: 'recklesslyUnprepared'
+  });
 
   const resetAll = () => {
     setReceipt(undefined);
